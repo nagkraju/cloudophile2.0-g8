@@ -8,7 +8,7 @@ const contactSchema = z.object({
   company: z.string().trim().max(120).optional().default(''),
   topic: z.enum(['executive-advisory', 'ai-strategy', 'cloud-platform', 'speaking', 'other']),
   message: z.string().trim().min(20).max(3000),
-  website: z.string().max(0).optional().default(''),
+  website: z.string().max(200).optional().default(''),
 })
 
 const topicLabels: Record<z.infer<typeof contactSchema>['topic'], string> = {
@@ -37,8 +37,8 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY
   const to = process.env.CONTACT_TO_EMAIL
-  const from = process.env.CONTACT_FROM_EMAIL
-  if (!apiKey || !to || !from) {
+  const from = process.env.CONTACT_FROM_EMAIL || 'Cloudophile <onboarding@resend.dev>'
+  if (!apiKey || !to) {
     return NextResponse.json({ message: 'Email delivery is not configured yet. Please try again later.' }, { status: 503 })
   }
 
