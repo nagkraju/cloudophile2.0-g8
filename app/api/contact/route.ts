@@ -48,19 +48,21 @@ export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY
   const to = process.env.CONTACT_TO_EMAIL
   const from = process.env.CONTACT_FROM_EMAIL || 'Cloudophile <onboarding@resend.dev>'
-  if (!apiKey || !to || !process.env.AZURE_STORAGE_CONNECTION_STRING) return NextResponse.json({ message: 'Message delivery is not configured yet. Please try again later.' }, { status: 503 })
+  if (!apiKey || !to) return NextResponse.json({ message: 'Message delivery is not configured yet. Please try again later.' }, { status: 503 })
 
   const { name, email, company, topic, message } = parsed.data
   const id = crypto.randomUUID()
   const createdAt = new Date().toISOString()
-  let blob: Awaited<ReturnType<typeof getInquiryBlob>>
+  let blob: Awaited<ReturnType<typeof getInquiryBlob>> | null = null
 
-  try {
-    blob = await getInquiryBlob(id)
-    const record = JSON.stringify({ id, createdAt, name, email, company, topic, topicLabel: topicLabels[topic], message, emailDelivery: 'pending' }, null, 2)
-    await blob.upload(record, Buffer.byteLength(record), { blobHTTPHeaders: { blobContentType: 'application/json' }, conditions: { ifNoneMatch: '*' } })
-  } catch {
-    return NextResponse.json({ message: 'Your message could not be saved right now. Please try again later.' }, { status: 502 })
+  if (process.env.AZURE_STORAGE_CONNECTION_STRING) {
+    try {
+      blob = await getInquiryBlob(id)
+      const record = JSON.stringify({ id, createdAt, name, email, company, topic, topicLabel: topicLabels[topic], message, emailDelivery: 'pending' }, null, 2)
+      await blob.upload(record, Buffer.byteLength(record), { blobHTTPHeaders: { blobContentType: 'application/json' }, conditions: { ifNoneMatch: '*' } })
+    } catch {
+      return NextResponse.json({ message: 'Your message could not be saved right now. Please try again later.' }, { status: 502 })
+    }
   }
 
   const safe = { name: escapeHtml(name), email: escapeHtml(email), company: escapeHtml(company), topic: escapeHtml(topicLabels[topic]), message: escapeHtml(message).replace(/\n/g, '<br />') }
@@ -74,11 +76,11 @@ export async function POST(request: Request) {
     })
     if (error) throw new Error(error.message)
     const delivered = JSON.stringify({ id, createdAt, name, email, company, topic, topicLabel: topicLabels[topic], message, emailDelivery: 'sent', emailDeliveredAt: new Date().toISOString() }, null, 2)
-    await blob.uploadData(Buffer.from(delivered), { overwrite: true, blobHTTPHeaders: { blobContentType: 'application/json' } })
+    if (blob) await blob.uploadData(Buffer.from(delivered), { overwrite: true, blobHTTPHeaders: { blobContentType: 'application/json' } })
     return NextResponse.json({ message: 'Your message has been sent.' })
   } catch {
     const failed = JSON.stringify({ id, createdAt, name, email, company, topic, topicLabel: topicLabels[topic], message, emailDelivery: 'failed', emailFailedAt: new Date().toISOString() }, null, 2)
-    await blob.uploadData(Buffer.from(failed), { overwrite: true, blobHTTPHeaders: { blobContentType: 'application/json' } }).catch(() => undefined)
-    return NextResponse.json({ message: 'Your details were saved, but email delivery failed. Please try again later.' }, { status: 502 })
+    if (blob) await blob.uploadData(Buffer.from(failed), { overwrite: true, blobHTTPHeaders: { blobContentType: 'application/json' } }).catch(() => undefined)
+    return NextResponse.json({ message: blob ? 'Your details were saved, but email delivery failed. Please try again later.' : 'Email delivery failed. Please try again later.' }, { status: 502 })
   }
 }
