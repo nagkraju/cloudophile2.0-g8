@@ -2,6 +2,7 @@ import { ArrowRight, ExternalLink } from 'lucide-react'
 import Link from 'next/link'
 
 import { CloudMesh } from '@/components/canvas/CloudMesh'
+import { SiteHeader } from '@/components/site-header'
 import { Button } from '@/components/ui/button'
 
 const companies = ['Microsoft', 'AWS', 'Amazon', 'Fidelity', 'Intuit', 'Cisco']
@@ -24,27 +25,6 @@ const focusAreas = [
   },
 ]
 
-function Header() {
-  return (
-    <header className="sticky top-0 z-20 border-b border-border bg-background/80 backdrop-blur-xl">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8" aria-label="Primary navigation">
-        <Link href="#home" className="font-mono text-sm font-semibold tracking-tight text-foreground">
-          CLOUDOPHILE<span className="text-primary">/</span>
-        </Link>
-        <div className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
-          <Link className="transition-colors hover:text-foreground" href="#experience">Experience</Link>
-          <Link className="transition-colors hover:text-foreground" href="#expertise">Expertise</Link>
-          <Link className="transition-colors hover:text-foreground" href="#articles">Articles</Link>
-          <Link className="transition-colors hover:text-foreground" href="#consulting">Advisory</Link>
-        </div>
-        <Button nativeButton={false} render={<Link href="#consulting" />} size="sm">
-          Start a conversation
-        </Button>
-      </nav>
-    </header>
-  )
-}
-
 function Hero() {
   return (
     <section id="home" className="relative isolate min-h-[calc(100svh-4rem)] overflow-hidden border-b border-border">
@@ -63,10 +43,10 @@ function Hero() {
               Nag Kakarla — Director of Technology, Cloud &amp; AI (EMEA) at Microsoft. Building at the intersection of distributed systems, AI transformation, and executive strategy. Previously AWS, Amazon, Fidelity, Intuit, and Cisco.
             </p>
             <div className="flex shrink-0 flex-wrap gap-3">
-              <Button nativeButton={false} render={<Link href="#consulting" />} size="lg">
+              <Button nativeButton={false} render={<Link href="/advisory" />} size="lg">
                 Book executive advisory <ArrowRight data-icon="inline-end" />
               </Button>
-              <Button nativeButton={false} render={<Link href="#articles" />} size="lg" variant="outline">
+              <Button nativeButton={false} render={<Link href="/articles" />} size="lg" variant="outline">
                 Explore articles
               </Button>
             </div>
@@ -80,10 +60,10 @@ function Hero() {
 export default function Page() {
   return (
     <main>
-      <Header />
+      <SiteHeader />
       <Hero />
 
-      <section aria-label="Career experience" className="border-b border-border bg-card/40">
+      <section id="experience" aria-label="Career experience" className="border-b border-border bg-card/40">
         <div className="mx-auto grid max-w-7xl gap-7 px-5 py-8 lg:grid-cols-[auto_1fr] lg:items-center lg:px-8">
           <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">Leadership journey</p>
           <ul className="grid grid-cols-3 gap-x-6 gap-y-5 sm:grid-cols-6">
@@ -124,10 +104,10 @@ export default function Page() {
           </div>
           <Button
             nativeButton={false}
-            render={<Link href="https://linkedin.com/in/nagkraju" target="_blank" rel="noreferrer" />}
+            render={<Link href="/advisory" />}
             size="lg"
           >
-            Connect on LinkedIn <ExternalLink data-icon="inline-end" />
+            Explore advisory <ExternalLink data-icon="inline-end" />
           </Button>
         </div>
       </section>
