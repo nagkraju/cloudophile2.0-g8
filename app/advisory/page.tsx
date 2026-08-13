@@ -48,10 +48,10 @@ export default function AdvisoryPage() {
             </p>
             <Button
               nativeButton={false}
-              render={<Link href="https://linkedin.com/in/nagkraju" target="_blank" rel="noreferrer" />}
+              render={<Link href="/contact" />}
               size="lg"
             >
-              Connect on LinkedIn <ArrowUpRight data-icon="inline-end" />
+              Start a conversation <ArrowUpRight data-icon="inline-end" />
             </Button>
           </div>
         </div>

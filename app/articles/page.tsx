@@ -62,7 +62,7 @@ export default function ArticlesPage() {
               <div className="flex flex-col gap-5">
                 <h2 className="text-balance text-2xl font-semibold tracking-[-0.025em] sm:text-3xl">{article.title}</h2>
                 <p className="text-pretty leading-relaxed text-muted-foreground">{article.summary}</p>
-                <Link href="/advisory" className="inline-flex items-center gap-2 text-sm font-medium text-foreground">
+                <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-medium text-foreground">
                   Discuss this topic <ArrowUpRight className="size-4" aria-hidden="true" />
                 </Link>
               </div>
