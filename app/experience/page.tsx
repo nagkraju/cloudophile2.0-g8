@@ -37,7 +37,7 @@ export default function ExperiencePage() {
       </section>
 
       <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
-        <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">Leadership journey</p>
+        <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">Techno-leadership journey</p>
         <div className="mt-8 divide-y divide-border border-y border-border">
           {roles.map((item) => (
             <article key={item.company} className="grid gap-5 py-10 md:grid-cols-[8rem_14rem_1fr] md:gap-10">

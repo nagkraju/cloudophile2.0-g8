@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
@@ -20,31 +19,11 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-7xl flex-col px-5 lg:px-8" aria-label="Primary navigation">
-        <div className="flex h-16 items-center justify-between gap-5">
-          <Link href="/" className="shrink-0 font-mono text-lg font-semibold tracking-tight text-foreground sm:text-xl">
-            CLOUDOPHILE<span className="text-primary">/</span>
-          </Link>
-          <div className="hidden items-center gap-5 text-sm text-muted-foreground lg:flex">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={isActive ? 'page' : undefined}
-                  className={cn('transition-colors hover:text-foreground', isActive && 'text-foreground')}
-                >
-                  {link.label}
-                </Link>
-              )
-            })}
-          </div>
-          <Button nativeButton={false} render={<Link href="/contact" />} size="sm">
-            Start a conversation
-          </Button>
-        </div>
-        <div className="flex gap-5 overflow-x-auto border-t border-border py-3 text-sm text-muted-foreground lg:hidden">
+      <nav className="mx-auto grid min-h-16 max-w-7xl grid-cols-[auto_1fr] items-center gap-5 px-5 lg:grid-cols-[auto_1fr_auto] lg:px-8" aria-label="Primary navigation">
+        <Link href="/" className="shrink-0 font-mono text-sm font-semibold tracking-tight text-foreground">
+          CLOUDOPHILE<span className="text-primary">/</span>
+        </Link>
+        <div className="col-span-2 flex items-center gap-6 overflow-x-auto border-t border-border py-3 text-[1.0625rem] text-muted-foreground lg:col-span-1 lg:justify-center lg:border-0 lg:py-0">
           {navLinks.map((link) => {
             const isActive = pathname === link.href
             return (
@@ -59,6 +38,9 @@ export function SiteHeader() {
             )
           })}
         </div>
+        <Link href="/contact" className="hidden font-mono text-xs uppercase tracking-[0.14em] text-primary transition-colors hover:text-foreground lg:block">
+          Let&apos;s talk →
+        </Link>
       </nav>
     </header>
   )
