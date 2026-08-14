@@ -22,17 +22,17 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur-xl">
-      <nav className="mx-auto flex min-h-20 max-w-7xl items-center gap-4 overflow-x-auto px-5 lg:px-8" aria-label="Primary navigation">
-        <Link href="/" className="relative h-12 w-40 shrink-0 overflow-hidden rounded-sm bg-foreground" aria-label="Cloudophile home">
-          <Image src="/brands/cloudophile.jpeg" alt="Cloudophile" fill priority sizes="160px" className="object-cover object-center" />
+      <nav className="mx-auto grid min-h-20 max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-5 lg:px-8" aria-label="Primary navigation">
+        <Link href="/" className="flex shrink-0 items-center" aria-label="Cloudophile home">
+          <Image src="/brands/cloudophile-mark.svg" alt="Cloudophile" width={156} height={43} priority className="h-auto w-32 sm:w-36" />
         </Link>
-        <div className="flex flex-1 items-center justify-center gap-4 text-base text-muted-foreground sm:gap-5 lg:gap-6">
+        <div className="flex min-w-0 items-center justify-center gap-4 overflow-x-auto text-sm font-medium text-muted-foreground lg:gap-6">
           {navLinks.map((link) => {
             const isActive = pathname === link.href
-            return <Link key={link.href} href={link.href} aria-current={isActive ? 'page' : undefined} className={cn('shrink-0 transition-colors hover:text-foreground', isActive && 'text-foreground')}>{link.label}</Link>
+            return <Link key={link.href} href={link.href} aria-current={isActive ? 'page' : undefined} className={cn('shrink-0 border-b-2 border-transparent py-2 transition-colors hover:text-foreground', isActive && 'border-primary text-foreground')}>{link.label}</Link>
           })}
         </div>
-        <Button nativeButton={false} render={<Link href="/contact" />} className="hidden shrink-0 xl:inline-flex">Start a conversation <ArrowRight data-icon="inline-end" /></Button>
+        <Button nativeButton={false} render={<Link href="/contact" />} size="sm" className="hidden shrink-0 sm:inline-flex">Start a conversation <ArrowRight data-icon="inline-end" /></Button>
       </nav>
     </header>
   )

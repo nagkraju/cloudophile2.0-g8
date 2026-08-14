@@ -10,7 +10,18 @@ const companies = [
 ]
 
 function CompanyList({ hidden = false }: { hidden?: boolean }) {
-  return <ul className="marquee-group flex shrink-0 items-center" aria-hidden={hidden || undefined}>{companies.map((company) => <li key={company.name} className="flex min-w-52 items-center justify-center px-7"><span className="relative block h-12 w-32 overflow-hidden rounded-sm bg-foreground/95 p-1"><Image src={company.src} alt={hidden ? '' : `${company.name} logo`} fill sizes="128px" className="object-contain" /></span><span className="sr-only">{company.name}</span></li>)}</ul>
+  return (
+    <ul className="marquee-group flex shrink-0 items-center" aria-hidden={hidden || undefined}>
+      {companies.map((company) => (
+        <li key={company.name} className="flex min-w-56 items-center justify-center gap-3 px-5">
+          <span className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden bg-background">
+            <Image src={company.src} alt="" fill sizes="48px" className="object-contain p-1" />
+          </span>
+          <span className="text-base font-semibold text-foreground">{company.name}</span>
+        </li>
+      ))}
+    </ul>
+  )
 }
 
 export function CompanyMarquee() {
