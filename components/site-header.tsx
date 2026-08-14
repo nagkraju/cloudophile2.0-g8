@@ -24,7 +24,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur-xl">
       <nav className="mx-auto grid min-h-20 max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-5 lg:px-8" aria-label="Primary navigation">
         <Link href="/" className="flex shrink-0 items-center" aria-label="Cloudophile home">
-          <Image src="/brands/cloudophile-mark.svg" alt="Cloudophile" width={360} height={132} priority className="h-auto w-24 object-contain sm:w-28" />
+          <Image src="/brands/cloudophile-mark.svg" alt="Cloudophile" width={661} height={297} priority className="h-auto w-24 object-contain sm:w-28" />
         </Link>
         <div className="flex min-w-0 items-center justify-center gap-4 overflow-x-auto text-sm font-medium text-muted-foreground lg:gap-6">
           {navLinks.map((link) => {
