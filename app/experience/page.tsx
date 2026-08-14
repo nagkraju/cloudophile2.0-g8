@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { Button } from '@/components/ui/button'
+import { getPageContent } from '@/lib/site-content'
 
 export const metadata: Metadata = {
   title: 'Experience',
@@ -24,15 +25,16 @@ const principles = [
   ['Create durable leverage', 'Invest in platforms and capabilities that compound beyond a single program or migration.'],
 ]
 
-export default function ExperiencePage() {
+export default async function ExperiencePage() {
+  const content = await getPageContent('experience')
   return (
     <main>
       <SiteHeader />
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:py-28 lg:px-8 lg:py-36">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">Experience</p>
-          <h1 className="mt-6 max-w-5xl text-balance text-5xl font-semibold leading-none tracking-[-0.045em] sm:text-7xl">Built across platforms. Proven through transformation.</h1>
-          <p className="mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">A leadership journey spanning cloud platforms, enterprise architecture, distributed systems, and the decisions that shape technology at scale.</p>
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">{content.eyebrow}</p>
+          <h1 className="mt-6 max-w-5xl text-balance text-5xl font-semibold leading-none tracking-[-0.045em] sm:text-7xl">{content.title}</h1>
+          <p className="mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">{content.intro}</p>
         </div>
       </section>
 

@@ -4,6 +4,7 @@ import Link from 'next/link'
 
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { getPageContent } from '@/lib/site-content'
 
 export const metadata: Metadata = {
   title: 'Articles',
@@ -38,16 +39,16 @@ const articles = [
   },
 ]
 
-export default function ArticlesPage() {
+export default async function ArticlesPage() {
+  const content = await getPageContent('articles')
   return (
     <main>
       <SiteHeader />
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:py-28 lg:px-8 lg:py-36">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">Articles &amp; field notes</p>
-          <h1 className="mt-6 max-w-5xl text-balance text-5xl font-semibold leading-none tracking-[-0.045em] sm:text-7xl">
-            Ideas for leaders building through the next technology shift.
-          </h1>
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">{content.eyebrow}</p>
+          <h1 className="mt-6 max-w-5xl text-balance text-5xl font-semibold leading-none tracking-[-0.045em] sm:text-7xl">{content.title}</h1>
+          <p className="mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">{content.intro}</p>
         </div>
       </section>
 

@@ -32,6 +32,7 @@ export function ContactForm() {
           name: formData.get('name'),
           email: formData.get('email'),
           company: formData.get('company'),
+          phone: formData.get('phone'),
           topic,
           message: formData.get('message'),
           website: formData.get('website'),
@@ -53,10 +54,11 @@ export function ContactForm() {
     <form onSubmit={handleSubmit} className="border border-border bg-card p-6 sm:p-8">
       <FieldGroup>
         <div className="grid gap-5 sm:grid-cols-2">
-          <Field><FieldLabel htmlFor="name">Name</FieldLabel><Input id="name" name="name" autoComplete="name" required minLength={2} maxLength={80} className="h-11" /></Field>
-          <Field><FieldLabel htmlFor="email">Work email</FieldLabel><Input id="email" name="email" type="email" autoComplete="email" required maxLength={160} className="h-11" /></Field>
+          <Field><FieldLabel htmlFor="name">Name <span aria-hidden="true" className="text-primary">*</span><span className="sr-only">required</span></FieldLabel><Input id="name" name="name" autoComplete="name" required minLength={2} maxLength={80} className="h-11" /></Field>
+          <Field><FieldLabel htmlFor="email">Work email <span aria-hidden="true" className="text-primary">*</span><span className="sr-only">required</span></FieldLabel><Input id="email" name="email" type="email" autoComplete="email" required maxLength={160} className="h-11" /></Field>
+          <Field><FieldLabel htmlFor="company">Company</FieldLabel><Input id="company" name="company" autoComplete="organization" maxLength={120} className="h-11" /></Field>
+          <Field><FieldLabel htmlFor="phone">Contact#</FieldLabel><Input id="phone" name="phone" type="tel" autoComplete="tel" maxLength={40} className="h-11" /></Field>
         </div>
-        <Field><FieldLabel htmlFor="company">Company</FieldLabel><Input id="company" name="company" autoComplete="organization" maxLength={120} className="h-11" /><FieldDescription>Optional, but useful context for the conversation.</FieldDescription></Field>
         <Field data-invalid={!topic && status.type === 'error'}>
           <FieldLabel htmlFor="topic">What would you like to discuss?</FieldLabel>
           <Select value={topic} onValueChange={(value) => setTopic(value ?? '')} required>

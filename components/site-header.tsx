@@ -1,8 +1,11 @@
 'use client'
 
+import { ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
 const navLinks = [
@@ -19,25 +22,17 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur-xl">
-      <nav className="mx-auto flex min-h-16 max-w-7xl items-center gap-4 overflow-x-auto px-5 lg:px-8" aria-label="Primary navigation">
-        <Link href="/" className="shrink-0 font-mono text-sm font-semibold tracking-tight text-foreground">
-          CLOUDOPHILE<span className="text-primary">/</span>
+      <nav className="mx-auto flex min-h-20 max-w-7xl items-center gap-4 overflow-x-auto px-5 lg:px-8" aria-label="Primary navigation">
+        <Link href="/" className="relative h-12 w-40 shrink-0 overflow-hidden rounded-sm bg-foreground" aria-label="Cloudophile home">
+          <Image src="/brands/cloudophile.jpeg" alt="Cloudophile" fill priority sizes="160px" className="object-cover object-center" />
         </Link>
-        <div className="flex flex-1 items-center justify-center gap-4 text-[1.0625rem] text-muted-foreground sm:gap-5 lg:gap-6">
+        <div className="flex flex-1 items-center justify-center gap-4 text-base text-muted-foreground sm:gap-5 lg:gap-6">
           {navLinks.map((link) => {
             const isActive = pathname === link.href
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                aria-current={isActive ? 'page' : undefined}
-                className={cn('shrink-0 transition-colors hover:text-foreground', isActive && 'text-foreground')}
-              >
-                {link.label}
-              </Link>
-            )
+            return <Link key={link.href} href={link.href} aria-current={isActive ? 'page' : undefined} className={cn('shrink-0 transition-colors hover:text-foreground', isActive && 'text-foreground')}>{link.label}</Link>
           })}
         </div>
+        <Button nativeButton={false} render={<Link href="/contact" />} className="hidden shrink-0 xl:inline-flex">Start a conversation <ArrowRight data-icon="inline-end" /></Button>
       </nav>
     </header>
   )

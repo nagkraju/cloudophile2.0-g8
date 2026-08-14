@@ -96,13 +96,13 @@
 .marquee-track:hover .marquee-group { animation-play-state: paused; }
 .marquee-group { animation: marquee 24s linear infinite; }
 
-.motion-card { min-height: 22rem; }
-.motion-visual { position: relative; display: grid; min-height: 15rem; place-items: center; overflow: hidden; background: color-mix(in srgb, var(--primary) 8%, var(--card)); }
+.motion-card { min-height: 18rem; }
+.motion-visual { position: relative; display: grid; min-height: 11rem; place-items: center; overflow: hidden; background: color-mix(in srgb, var(--primary) 8%, var(--card)); }
 .motion-visual::before { position: absolute; inset: 0; background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); background-size: 28px 28px; content: ''; opacity: 0.7; }
-.motion-icon { position: relative; z-index: 2; width: 4.5rem; height: 4.5rem; color: var(--foreground); filter: drop-shadow(0 0 18px color-mix(in srgb, var(--primary) 55%, transparent)); animation: drift 4s ease-in-out infinite; }
-.motion-orbit { position: absolute; z-index: 1; width: 10rem; height: 10rem; border: 1px solid color-mix(in srgb, var(--primary) 60%, transparent); border-radius: 999px; animation: orbit 8s linear infinite; }
+.motion-icon { position: relative; z-index: 2; width: 3.5rem; height: 3.5rem; color: var(--foreground); filter: drop-shadow(0 0 18px color-mix(in srgb, var(--primary) 55%, transparent)); animation: drift 4s ease-in-out infinite; }
+.motion-orbit { position: absolute; z-index: 1; width: 8rem; height: 8rem; border: 2px solid color-mix(in srgb, var(--primary) 72%, transparent); border-radius: 999px; animation: orbit 8s linear infinite; }
 .motion-orbit::after { position: absolute; top: 50%; left: -0.3rem; width: 0.65rem; height: 0.65rem; border-radius: 999px; background: var(--primary); box-shadow: 0 0 18px var(--primary); content: ''; }
-.motion-orbit-two { width: 7rem; height: 7rem; animation-duration: 5s; animation-direction: reverse; }
+.motion-orbit-two { width: 5.5rem; height: 5.5rem; animation-duration: 5s; animation-direction: reverse; }
 .motion-pulse { position: absolute; width: 2rem; height: 2rem; border: 1px solid var(--accent); border-radius: 999px; animation: drift 2.8s ease-in-out infinite reverse; }
 .motion-data .motion-orbit { border-radius: 20%; }
 .motion-ai .motion-orbit-one { transform: rotate(45deg); border-radius: 28%; }

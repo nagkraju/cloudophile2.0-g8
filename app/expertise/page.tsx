@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
+import { getPageContent } from '@/lib/site-content'
 
 export const metadata: Metadata = {
   title: 'Expertise',
@@ -36,19 +37,16 @@ const capabilities = [
   },
 ]
 
-export default function ExpertisePage() {
+export default async function ExpertisePage() {
+  const content = await getPageContent('expertise')
   return (
     <main>
       <SiteHeader />
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-5 py-20 sm:py-28 lg:px-8 lg:py-36">
-          <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">Expertise</p>
-          <h1 className="mt-6 max-w-5xl text-balance text-5xl font-semibold leading-none tracking-[-0.045em] sm:text-7xl">
-            Deep systems thinking. Clear executive decisions.
-          </h1>
-          <p className="mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">
-            Technology leadership across enterprise AI, cloud platforms, distributed systems, and transformation programs where architecture and strategy must move together.
-          </p>
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-primary">{content.eyebrow}</p>
+          <h1 className="mt-6 max-w-5xl text-balance text-5xl font-semibold leading-none tracking-[-0.045em] sm:text-7xl">{content.title}</h1>
+          <p className="mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">{content.intro}</p>
         </div>
       </section>
 
