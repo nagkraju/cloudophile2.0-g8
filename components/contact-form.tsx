@@ -66,7 +66,7 @@ export function ContactForm() {
             <SelectContent><SelectGroup><SelectItem value="executive-advisory">Executive advisory</SelectItem><SelectItem value="ai-strategy">Enterprise AI strategy</SelectItem><SelectItem value="cloud-platform">Cloud or platform strategy</SelectItem><SelectItem value="speaking">Speaking or leadership session</SelectItem><SelectItem value="career-coaching">Career coaching</SelectItem><SelectItem value="big-tech-interview">Big Tech Interview preparation</SelectItem><SelectItem value="resume-writing">Resume writing</SelectItem><SelectItem value="other">Another conversation</SelectItem></SelectGroup></SelectContent>
           </Select>
         </Field>
-        <Field><FieldLabel htmlFor="message">How can I help?</FieldLabel><Textarea id="message" name="message" required minLength={20} maxLength={3000} rows={7} placeholder="Share the decision, challenge, or opportunity you are working through." /></Field>
+        <Field><FieldLabel htmlFor="message">How can I help? <span aria-hidden="true" className="text-primary">*</span><span className="sr-only">required</span></FieldLabel><Textarea id="message" name="message" required minLength={20} maxLength={3000} rows={7} placeholder="Share the decision, challenge, or opportunity you are working through." /></Field>
         <div className="sr-only" aria-hidden="true"><label htmlFor="website">Website</label><input id="website" name="website" tabIndex={-1} autoComplete="off" /></div>
         <FieldDescription>By submitting, you agree that your details may be used to respond to this inquiry. No mailing lists, no automated follow-ups.</FieldDescription>
         {status.type === 'error' && <FieldError>{status.message}</FieldError>}
