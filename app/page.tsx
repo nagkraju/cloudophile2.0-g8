@@ -18,9 +18,9 @@ export default function HomePage() {
   return (
     <main>
       <SiteHeader />
-      <section className="relative isolate min-h-[calc(100svh-4rem)] overflow-hidden border-b border-border">
+      <section className="relative isolate min-h-[40rem] overflow-hidden border-b border-border">
         <CloudMesh />
-        <div className="relative mx-auto flex min-h-[calc(100svh-4rem)] max-w-7xl items-end px-5 py-16 sm:py-20 lg:px-8 lg:py-24">
+        <div className="relative mx-auto flex min-h-[40rem] max-w-7xl items-center px-5 py-20 sm:py-24 lg:px-8 lg:py-28">
           <div className="max-w-5xl">
             <div className="mb-8 flex items-center gap-3 font-mono text-[0.9375rem] uppercase tracking-[0.16em] text-primary">
               <span className="block h-px w-10 bg-primary" />
