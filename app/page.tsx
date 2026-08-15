@@ -22,7 +22,7 @@ export default function HomePage() {
         <CloudMesh />
         <div className="relative mx-auto flex min-h-[40rem] max-w-7xl items-center px-5 py-20 sm:py-24 lg:px-8 lg:py-28">
           <div className="max-w-5xl">
-            <div className="mb-8 flex items-center gap-3 font-mono text-[1.125rem] uppercase tracking-[0.16em] text-primary">
+            <div className="mb-8 flex items-center gap-3 font-mono text-[0.875rem] uppercase tracking-[0.16em] text-primary">
               <span className="block h-px w-10 bg-primary" />
               <span>Cloud · Data · AI · Executive leadership</span>
               <span className="block h-px w-10 bg-primary" />
