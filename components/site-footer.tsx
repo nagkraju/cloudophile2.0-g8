@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 
 const links = [
   { label: 'Home', href: '/' }, { label: 'Experience', href: '/experience' }, { label: 'Expertise', href: '/expertise' },
-  { label: 'Articles', href: '/articles' }, { label: 'Advisory', href: '/advisory' }, { label: 'Contact', href: '/contact' },
+  { label: 'Testimonials', href: '/testimonials' }, { label: 'Articles', href: '/articles' }, { label: 'Advisory', href: '/advisory' }, { label: 'Contact', href: '/contact' },
 ]
 
 export function SiteFooter() {

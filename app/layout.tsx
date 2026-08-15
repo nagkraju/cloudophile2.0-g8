@@ -37,8 +37,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'dark',
-  themeColor: '#0b0f17',
+  colorScheme: 'light',
+  themeColor: '#f7f9fc',
   width: 'device-width',
   initialScale: 1,
   userScalable: true,
@@ -69,7 +69,7 @@ const structuredData = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`dark bg-background ${geist.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`bg-background ${geist.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased">
         {children}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, '\\u003c') }} />
