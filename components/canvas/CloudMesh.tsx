@@ -73,5 +73,5 @@ function NodeField() {
 }
 
 export function CloudMesh() {
-  return <div className="pointer-events-none absolute inset-0 opacity-55" aria-hidden="true"><Canvas camera={{ position: [0, 0, 7], fov: 52 }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: false, powerPreference: 'high-performance' }}><NodeField /></Canvas></div>
+  return <div className="cloud-mesh-entrance pointer-events-none absolute inset-0" aria-hidden="true"><div className="cloud-mesh-sheen absolute inset-0" /><Canvas camera={{ position: [0, 0, 7], fov: 52 }} dpr={[1, 1.5]} gl={{ alpha: true, antialias: false, powerPreference: 'high-performance' }}><NodeField /></Canvas></div>
 }

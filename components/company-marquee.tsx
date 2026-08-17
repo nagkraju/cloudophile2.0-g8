@@ -15,7 +15,7 @@ function CompanyList({ hidden = false }: { hidden?: boolean }) {
       {companies.map((company) => (
         <li key={company.name} className="flex min-w-56 items-center justify-center gap-3 px-5">
           <span className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden bg-background">
-            <Image src={company.src} alt="" fill sizes="48px" className="object-contain p-1" />
+            <Image src={company.src} alt="" fill sizes="48px" className={`object-contain ${company.name === 'Cisco' ? 'p-0.5' : 'p-1'}`} />
           </span>
           <span className="text-base font-semibold text-foreground">{company.name}</span>
         </li>

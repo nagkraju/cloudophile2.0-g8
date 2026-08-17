@@ -108,8 +108,30 @@
 .motion-ai .motion-orbit-one { transform: rotate(45deg); border-radius: 28%; }
 .motion-architecture .motion-orbit-two { border-radius: 0.4rem; }
 
+@keyframes cloud-mesh-settle {
+  0% { opacity: 0.96; filter: saturate(1.45) brightness(1.18); }
+  28% { opacity: 0.88; filter: saturate(1.3) brightness(1.1); }
+  100% { opacity: 0.55; filter: saturate(1) brightness(1); }
+}
+
+@keyframes cloud-sheen-settle {
+  0% { opacity: 0.72; transform: translateX(-18%); }
+  45% { opacity: 0.32; }
+  100% { opacity: 0; transform: translateX(18%); }
+}
+
+.cloud-mesh-entrance { animation: cloud-mesh-settle 4.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.cloud-mesh-sheen {
+  z-index: 1;
+  background: linear-gradient(112deg, transparent 25%, color-mix(in srgb, var(--primary) 16%, white) 48%, transparent 70%);
+  mix-blend-mode: screen;
+  animation: cloud-sheen-settle 3.2s ease-out both;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .marquee-group, .motion-icon, .motion-orbit, .motion-pulse { animation: none; }
   .marquee-track .marquee-group[aria-hidden='true'] { display: none; }
+  .cloud-mesh-entrance { animation: none; opacity: 0.55; filter: none; }
+  .cloud-mesh-sheen { display: none; }
 }
