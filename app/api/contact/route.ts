@@ -32,7 +32,8 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY
   const to = process.env.CONTACT_TO_EMAIL
-  const from = 'Cloudophile <contact@cloudophile.com>'
+  const from = process.env.CONTACT_FROM_EMAIL || 'Cloudophile <contact@cloudophile.com>'
+  const fallbackFrom = 'Cloudophile <onboarding@resend.dev>'
   if (!apiKey || !to) return NextResponse.json({ message: 'Message delivery is not configured yet. Please try again later.' }, { status: 503 })
 
   const { name, email, company, phone, topic, message } = parsed.data
@@ -50,8 +51,17 @@ export async function POST(request: Request) {
   try {
     const resend = new Resend(apiKey)
     const subjectName = name.replace(/[\r\n]/g, ' ')
-    const { error } = await resend.emails.send({ from, to, replyTo: email, subject: `Cloudophile inquiry: ${topicLabels[topic]} — ${subjectName}`, text: `Name: ${name}\nEmail: ${email}\nContact#: ${phone || 'Not provided'}\nCompany: ${company || 'Not provided'}\nTopic: ${topicLabels[topic]}\n\n${message}`, html: `<h2>New Cloudophile inquiry</h2><p><strong>Name:</strong> ${safe.name}</p><p><strong>Email:</strong> ${safe.email}</p><p><strong>Contact#:</strong> ${safe.phone || 'Not provided'}</p><p><strong>Company:</strong> ${safe.company || 'Not provided'}</p><p><strong>Topic:</strong> ${safe.topic}</p><hr /><p>${safe.message}</p>` })
-    if (error) throw new Error(error.message)
+    const payloadToSend = {
+      to, replyTo: email, subject: `Cloudophile inquiry: ${topicLabels[topic]} — ${subjectName}`,
+      text: `Name: ${name}\nEmail: ${email}\nContact#: ${phone || 'Not provided'}\nCompany: ${company || 'Not provided'}\nTopic: ${topicLabels[topic]}\n\n${message}`,
+      html: `<h2>New Cloudophile inquiry</h2><p><strong>Name:</strong> ${safe.name}</p><p><strong>Email:</strong> ${safe.email}</p><p><strong>Contact#:</strong> ${safe.phone || 'Not provided'}</p><p><strong>Company:</strong> ${safe.company || 'Not provided'}</p><p><strong>Topic:</strong> ${safe.topic}</p><hr /><p>${safe.message}</p>`,
+    }
+    let { error } = await resend.emails.send({ from, ...payloadToSend })
+    if (error && /not verified|only send testing emails/i.test(error.message || '')) {
+      console.log('[v0] Resend rejected sender, retrying with shared sender:', error.message)
+      error = (await resend.emails.send({ from: fallbackFrom, ...payloadToSend })).error
+    }
+    if (error) { console.log('[v0] Resend delivery error:', error.name, error.message); throw new Error(error.message) }
     if (table) await table.updateEntity({ partitionKey: entity.partitionKey, rowKey: id, emailDelivery: 'sent', emailDeliveredAt: new Date().toISOString() }, 'Merge')
     return NextResponse.json({ message: 'Your message has been sent.' })
   } catch {
