@@ -44,7 +44,7 @@ export default async function ExperiencePage() {
         <div className="mt-8 divide-y divide-border border-y border-border">
           {roles.map((item) => (
             <article key={item.company} className="grid gap-5 py-10 md:grid-cols-[8rem_14rem_1fr] md:gap-10">
-              <p className="font-mono text-xs uppercase tracking-[0.16em] text-primary">{item.period}</p>
+              <p className="font-mono text-[0.875rem] uppercase tracking-[0.16em] text-primary">{item.period}</p>
               <div><h2 className="text-2xl font-semibold tracking-tight">{item.company}</h2><p className="mt-2 text-sm text-muted-foreground">{item.role}</p></div>
               <p className="max-w-2xl leading-relaxed text-muted-foreground">{item.copy}</p>
             </article>

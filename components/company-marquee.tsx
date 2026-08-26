@@ -25,5 +25,5 @@ function CompanyList({ hidden = false }: { hidden?: boolean }) {
 }
 
 export function CompanyMarquee() {
-  return <section aria-labelledby="journey-title" className="overflow-hidden border-b border-border bg-card/40"><div className="mx-auto flex max-w-7xl items-center gap-6 px-5 py-6 lg:px-8"><p id="journey-title" className="shrink-0 font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">Techno-leadership journey</p><div className="marquee-track flex min-w-0 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"><CompanyList /><CompanyList hidden /></div></div></section>
+  return <section aria-labelledby="journey-title" className="overflow-hidden border-b border-border bg-card/40"><div className="mx-auto flex max-w-7xl items-center gap-6 px-5 py-6 lg:px-8"><p id="journey-title" className="shrink-0 font-mono text-[0.875rem] uppercase tracking-[0.18em] text-muted-foreground">Techno-leadership journey</p><div className="marquee-track flex min-w-0 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"><CompanyList /><CompanyList hidden /></div></div></section>
 }

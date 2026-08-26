@@ -57,11 +57,19 @@ export async function POST(request: Request) {
       html: `<h2>New Cloudophile inquiry</h2><p><strong>Name:</strong> ${safe.name}</p><p><strong>Email:</strong> ${safe.email}</p><p><strong>Contact#:</strong> ${safe.phone || 'Not provided'}</p><p><strong>Company:</strong> ${safe.company || 'Not provided'}</p><p><strong>Topic:</strong> ${safe.topic}</p><hr /><p>${safe.message}</p>`,
     }
     let { error } = await resend.emails.send({ from, ...payloadToSend })
-    if (error && /not verified|only send testing emails/i.test(error.message || '')) {
-      console.log('[v0] Resend rejected sender, retrying with shared sender:', error.message)
+
+    // Until a sending domain is verified in Resend, fall back to the shared test sender.
+    if (error && /domain is not verified/i.test(error.message || '')) {
       error = (await resend.emails.send({ from: fallbackFrom, ...payloadToSend })).error
     }
-    if (error) { console.log('[v0] Resend delivery error:', error.name, error.message); throw new Error(error.message) }
+
+    // The shared test sender may only deliver to the Resend account owner; retry with that address.
+    const ownerMatch = error?.message?.match(/your own email address \(([^)]+)\)/i)
+    if (ownerMatch) {
+      error = (await resend.emails.send({ from: fallbackFrom, ...payloadToSend, to: ownerMatch[1], subject: `${payloadToSend.subject} (intended for ${to})` })).error
+    }
+
+    if (error) throw new Error(`${error.name}: ${error.message}`)
     if (table) await table.updateEntity({ partitionKey: entity.partitionKey, rowKey: id, emailDelivery: 'sent', emailDeliveredAt: new Date().toISOString() }, 'Merge')
     return NextResponse.json({ message: 'Your message has been sent.' })
   } catch {
