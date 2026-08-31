@@ -66,8 +66,8 @@ function NodeField() {
 
   return (
     <group ref={group} rotation={[0.08, 0, -0.08]}>
-      <lineSegments><bufferGeometry><bufferAttribute attach="attributes-position" args={[connections, 3]} /></bufferGeometry><lineBasicMaterial color="#73b9f6" transparent opacity={0.38} /></lineSegments>
-      <points><bufferGeometry><bufferAttribute attach="attributes-position" args={[positions, 3]} /><bufferAttribute attach="attributes-aScale" args={[scales, 1]} /></bufferGeometry><shaderMaterial ref={material} vertexShader={vertexShader} fragmentShader={fragmentShader} transparent depthWrite={false} blending={THREE.NormalBlending} uniforms={{ uTime: { value: 0 }, uPixelRatio: { value: Math.min(window.devicePixelRatio, 1.5) }, uColor: { value: new THREE.Color('#2b8de5') } }} /></points>
+      <lineSegments><bufferGeometry><bufferAttribute attach="attributes-position" args={[connections, 3]} /></bufferGeometry><lineBasicMaterial color="#1877f2" transparent opacity={0.3} /></lineSegments>
+      <points><bufferGeometry><bufferAttribute attach="attributes-position" args={[positions, 3]} /><bufferAttribute attach="attributes-aScale" args={[scales, 1]} /></bufferGeometry><shaderMaterial ref={material} vertexShader={vertexShader} fragmentShader={fragmentShader} transparent depthWrite={false} blending={THREE.AdditiveBlending} uniforms={{ uTime: { value: 0 }, uPixelRatio: { value: Math.min(window.devicePixelRatio, 1.5) }, uColor: { value: new THREE.Color('#1877f2') } }} /></points>
     </group>
   )
 }
