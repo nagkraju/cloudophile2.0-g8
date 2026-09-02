@@ -32,7 +32,8 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY
   const to = process.env.CONTACT_TO_EMAIL
-  const from = process.env.CONTACT_FROM_EMAIL || 'Cloudophile <onboarding@resend.dev>'
+  const from = process.env.CONTACT_FROM_EMAIL || 'Cloudophile <contact@cloudophile.com>'
+  const fallbackFrom = 'Cloudophile <onboarding@resend.dev>'
   if (!apiKey || !to) return NextResponse.json({ message: 'Message delivery is not configured yet. Please try again later.' }, { status: 503 })
 
   const { name, email, company, phone, topic, message } = parsed.data
@@ -49,8 +50,26 @@ export async function POST(request: Request) {
   const safe = { name: escapeHtml(name), email: escapeHtml(email), company: escapeHtml(company), phone: escapeHtml(phone), topic: escapeHtml(topicLabels[topic]), message: escapeHtml(message).replace(/\n/g, '<br />') }
   try {
     const resend = new Resend(apiKey)
-    const { error } = await resend.emails.send({ from, to, replyTo: email, subject: `Cloudophile inquiry: ${topicLabels[topic]} — ${name}`, text: `Name: ${name}\nEmail: ${email}\nContact#: ${phone || 'Not provided'}\nCompany: ${company || 'Not provided'}\nTopic: ${topicLabels[topic]}\n\n${message}`, html: `<h2>New Cloudophile inquiry</h2><p><strong>Name:</strong> ${safe.name}</p><p><strong>Email:</strong> ${safe.email}</p><p><strong>Contact#:</strong> ${safe.phone || 'Not provided'}</p><p><strong>Company:</strong> ${safe.company || 'Not provided'}</p><p><strong>Topic:</strong> ${safe.topic}</p><hr /><p>${safe.message}</p>` })
-    if (error) throw new Error(error.message)
+    const subjectName = name.replace(/[\r\n]/g, ' ')
+    const payloadToSend = {
+      to, replyTo: email, subject: `Cloudophile inquiry: ${topicLabels[topic]} — ${subjectName}`,
+      text: `Name: ${name}\nEmail: ${email}\nContact#: ${phone || 'Not provided'}\nCompany: ${company || 'Not provided'}\nTopic: ${topicLabels[topic]}\n\n${message}`,
+      html: `<h2>New Cloudophile inquiry</h2><p><strong>Name:</strong> ${safe.name}</p><p><strong>Email:</strong> ${safe.email}</p><p><strong>Contact#:</strong> ${safe.phone || 'Not provided'}</p><p><strong>Company:</strong> ${safe.company || 'Not provided'}</p><p><strong>Topic:</strong> ${safe.topic}</p><hr /><p>${safe.message}</p>`,
+    }
+    let { error } = await resend.emails.send({ from, ...payloadToSend })
+
+    // Until a sending domain is verified in Resend, fall back to the shared test sender.
+    if (error && /domain is not verified/i.test(error.message || '')) {
+      error = (await resend.emails.send({ from: fallbackFrom, ...payloadToSend })).error
+    }
+
+    // The shared test sender may only deliver to the Resend account owner; retry with that address.
+    const ownerMatch = error?.message?.match(/your own email address \(([^)]+)\)/i)
+    if (ownerMatch) {
+      error = (await resend.emails.send({ from: fallbackFrom, ...payloadToSend, to: ownerMatch[1], subject: `${payloadToSend.subject} (intended for ${to})` })).error
+    }
+
+    if (error) throw new Error(`${error.name}: ${error.message}`)
     if (table) await table.updateEntity({ partitionKey: entity.partitionKey, rowKey: id, emailDelivery: 'sent', emailDeliveredAt: new Date().toISOString() }, 'Merge')
     return NextResponse.json({ message: 'Your message has been sent.' })
   } catch {
