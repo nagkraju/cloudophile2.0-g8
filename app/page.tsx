@@ -29,7 +29,7 @@ export default function HomePage() {
             </div>
             <h1 className="max-w-5xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.045em] sm:text-7xl lg:text-7xl">Architecting the future of enterprise cloud &amp; <span className="text-gradient">agentic AI.</span></h1>
             <div className="mt-10 max-w-4xl border-l border-primary/60 pl-5 sm:pl-7">
-              <p className="max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">Nag Kakarla — Director of Technology, Cloud &amp; AI (EMEA) at Microsoft. Building at the intersection of distributed systems, AI transformation, data, and executive strategy.</p>
+              <p className="max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"><span className="text-gradient font-semibold">Nag Kakarla</span> — Director of Technology, Cloud &amp; AI (EMEA) at Microsoft. Building at the intersection of distributed systems, AI transformation, data, and executive strategy.</p>
             </div>
           </div>
         </div>

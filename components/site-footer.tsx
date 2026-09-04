@@ -27,7 +27,7 @@ export function SiteFooter() {
         </div>
         <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <nav className="flex flex-wrap gap-x-5 gap-y-3 text-sm text-muted-foreground" aria-label="Footer navigation">{links.map((link) => <Link key={link.href} href={link.href} className="hover:text-foreground">{link.label}</Link>)}</nav>
-          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Nag Kakarla</p>
+          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} <span className="text-gradient font-medium">Nag Kakarla</span></p>
         </div>
       </div>
     </footer>
