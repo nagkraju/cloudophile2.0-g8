@@ -67,12 +67,11 @@
   body {
     @apply text-foreground;
     background-color: var(--background);
-    /* Blue (top-left) → violet (bottom-right) at the same 105deg as .text-gradient, settling into the neutral base. */
+    /* Blue (left) → violet (right), mirroring the .text-gradient hue path. Washes are centered vertically and span the full height so the top and bottom halves read identically. */
     background-image:
-      radial-gradient(ellipse 70% 55% at 12% -5%, color-mix(in srgb, var(--primary) 30%, transparent), transparent 62%),
-      radial-gradient(ellipse 65% 50% at 92% 18%, color-mix(in srgb, var(--accent) 24%, transparent), transparent 60%),
-      radial-gradient(ellipse 60% 45% at 50% 105%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 65%),
-      linear-gradient(105deg, color-mix(in srgb, var(--primary) 9%, var(--background)), var(--background) 48%, color-mix(in srgb, var(--accent) 9%, var(--background)));
+      radial-gradient(ellipse 58% 140% at 0% 50%, color-mix(in srgb, var(--primary) 26%, transparent), transparent 64%),
+      radial-gradient(ellipse 58% 140% at 100% 50%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 64%),
+      linear-gradient(90deg, color-mix(in srgb, var(--primary) 9%, var(--background)), var(--background) 50%, color-mix(in srgb, var(--accent) 9%, var(--background)));
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
