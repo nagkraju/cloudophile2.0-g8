@@ -34,18 +34,18 @@
 :root {
   color-scheme: dark;
   /* Neutral near-black base (temporal.io) with a blue → violet ambient wash that mirrors the .text-gradient hue path. */
-  --background: #141414;
+  --background: #1c1d22;
   --foreground: #f8fafc;
-  --card: #1c1c21;
+  --card: #25262d;
   --card-foreground: #f8fafc;
-  --popover: #1c1c21;
+  --popover: #25262d;
   --popover-foreground: #f8fafc;
   --primary: #1877f2;
   --primary-foreground: #f8fafc;
-  --secondary: #1c1c21;
+  --secondary: #25262d;
   --secondary-foreground: #f8fafc;
-  --muted: #1c1c21;
-  --muted-foreground: #a1a1aa;
+  --muted: #25262d;
+  --muted-foreground: #aab0bc;
   --accent: #7c5cff;
   --accent-foreground: #f8fafc;
   --destructive: #7c5cff;
@@ -69,9 +69,9 @@
     background-color: var(--background);
     /* Blue (left) → violet (right), mirroring the .text-gradient hue path. Washes are centered vertically and span the full height so the top and bottom halves read identically. */
     background-image:
-      radial-gradient(ellipse 58% 140% at 0% 50%, color-mix(in srgb, var(--primary) 26%, transparent), transparent 64%),
-      radial-gradient(ellipse 58% 140% at 100% 50%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 64%),
-      linear-gradient(90deg, color-mix(in srgb, var(--primary) 9%, var(--background)), var(--background) 50%, color-mix(in srgb, var(--accent) 9%, var(--background)));
+      radial-gradient(ellipse 58% 140% at 0% 50%, color-mix(in srgb, var(--primary) 30%, transparent), transparent 64%),
+      radial-gradient(ellipse 58% 140% at 100% 50%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 64%),
+      linear-gradient(90deg, color-mix(in srgb, var(--primary) 12%, var(--background)), var(--background) 50%, color-mix(in srgb, var(--accent) 12%, var(--background)));
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
