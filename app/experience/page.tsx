@@ -54,7 +54,7 @@ export default async function ExperiencePage() {
         </div>
       </section>
 
-      <section className="border-y border-border bg-card">
+      <section className="border-y border-border">
         <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
           <p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">Operating principles</p>
           <div className="mt-8 grid border-l border-t border-border md:grid-cols-3">
