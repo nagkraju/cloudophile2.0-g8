@@ -77,11 +77,6 @@
     background-size: cover;
   }
 
-  /* Alternating lightness bands, top-down: the first section is lifted by --band-step, the next by 2x, then the pattern repeats. Translucent overlays keep the blue → violet wash visible. */
-  :root { --band-step: 10%; }
-  main > section:nth-of-type(odd) { background-color: color-mix(in srgb, white var(--band-step), transparent); }
-  main > section:nth-of-type(even) { background-color: color-mix(in srgb, white calc(var(--band-step) * 2), transparent); }
-
   ::selection {
     background: var(--primary);
     color: var(--primary-foreground);
