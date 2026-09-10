@@ -6,28 +6,35 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
-
-const links = [
-  { label: 'Home', href: '/' }, { label: 'Experience', href: '/experience' }, { label: 'Expertise', href: '/expertise' },
-  { label: 'Testimonials', href: '/testimonials' }, { label: 'Articles', href: '/articles' }, { label: 'Advisory', href: '/advisory' }, { label: 'Contact', href: '/contact' },
-]
-
-const nextPageByPath = Object.fromEntries(links.map((link, index) => [link.href, links[(index + 1) % links.length]]))
+import { navGridClass, navLinkActiveClass, navLinkClass, navLinks, navListClass, nextPageByPath } from '@/lib/navigation'
+import { cn } from '@/lib/utils'
 
 export function SiteFooter() {
   const pathname = usePathname()
-  const nextPage = nextPageByPath[pathname] || links[0]
+  const nextPage = nextPageByPath[pathname] || navLinks[0]
 
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 py-10 lg:px-8">
-        <div className="flex flex-col gap-8 border-b border-border pb-8 lg:flex-row lg:items-end lg:justify-between">
-          <div><Link href="/" className="inline-flex" aria-label="Cloudophile home"><Image src="/brands/cloudophile3.png" alt="Cloudophile" width={991} height={123} className="h-auto w-28 object-contain" /></Link><p className="mt-3 text-xs text-muted-foreground">Enterprise Cloud, Data, AI, and technology leadership.</p></div>
-          <div className="flex flex-wrap gap-3"><Button nativeButton={false} render={<Link href="/contact" />}>Start a conversation <ArrowRight data-icon="inline-end" /></Button><Button nativeButton={false} render={<Link href={nextPage.href} />} variant="outline">Explore {nextPage.label} <ArrowRight data-icon="inline-end" /></Button></div>
+      <nav className={cn(navGridClass, 'border-b border-border')} aria-label="Footer navigation">
+        <Link href="/" className="flex shrink-0 items-center" aria-label="Cloudophile home">
+          <Image src="/brands/cloudophile3.png" alt="Cloudophile" width={991} height={123} className="h-auto w-32 object-contain sm:w-44" />
+        </Link>
+        <div className={navListClass}>
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href
+            return <Link key={link.href} href={link.href} aria-current={isActive ? 'page' : undefined} className={cn(navLinkClass, isActive && navLinkActiveClass)}>{link.label}</Link>
+          })}
         </div>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <nav className="flex flex-wrap gap-x-5 gap-y-3 text-sm text-muted-foreground" aria-label="Footer navigation">{links.map((link) => <Link key={link.href} href={link.href} className="hover:text-foreground">{link.label}</Link>)}</nav>
-          <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} <span className="text-gradient font-medium">Nag Kakarla</span></p>
+        <Button nativeButton={false} render={<Link href="/contact" />} size="sm" className="hidden shrink-0 lg:inline-flex">Start a conversation <ArrowRight data-icon="inline-end" /></Button>
+      </nav>
+      <div className="mx-auto flex max-w-screen-2xl flex-col gap-4 px-4 py-6 sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <div className="flex flex-col gap-1 text-xs text-muted-foreground">
+          <p>Enterprise Cloud, Data, AI, and technology leadership.</p>
+          <p>© {new Date().getFullYear()} <span className="text-gradient font-medium">Nag Kakarla</span></p>
+        </div>
+        <div className="flex flex-wrap gap-3">
+          <Button nativeButton={false} render={<Link href="/contact" />} className="lg:hidden">Start a conversation <ArrowRight data-icon="inline-end" /></Button>
+          <Button nativeButton={false} render={<Link href={nextPage.href} />} variant="outline">Explore {nextPage.label} <ArrowRight data-icon="inline-end" /></Button>
         </div>
       </div>
     </footer>
