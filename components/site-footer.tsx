@@ -17,7 +17,7 @@ export function SiteFooter() {
     <footer className="border-t border-border">
       <nav className={cn(navGridClass, 'border-b border-border')} aria-label="Footer navigation">
         <Link href="/" className="flex shrink-0 items-center" aria-label="Cloudophile home">
-          <Image src="/brands/cloudophile3.png" alt="Cloudophile" width={991} height={123} className="h-auto w-32 object-contain sm:w-44" />
+          <Image src="/brands/cloudophile3.png" alt="Cloudophile" width={991} height={123} className="h-auto w-[5.6rem] object-contain sm:w-[7.7rem]" />
         </Link>
         <div className={navListClass}>
           {navLinks.map((link) => {
