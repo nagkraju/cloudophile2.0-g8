@@ -12,8 +12,8 @@ const siteUrl = 'https://cloudophile.com'
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Nag Kakarla — Enterprise Cloud & AI Executive',
-    template: '%s | Cloudophile',
+    default: 'Cloudophile - Nag Kakarla',
+    template: '%s | Cloudophile - Nag Kakarla',
   },
   description: 'Executive technology leader and advisor helping enterprises navigate cloud modernization, generative AI transformation, and agentic systems.',
   keywords: ['Nag Kakarla', 'Cloudophile', 'enterprise AI', 'agentic AI', 'cloud architecture', 'technology executive'],
