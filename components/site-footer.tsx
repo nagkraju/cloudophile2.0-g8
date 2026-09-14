@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { navLinkActiveClass, navLinkClass, navLinks, nextPageByPath } from '@/lib/navigation'
+import { navItemsClass, navLinkActiveClass, navLinkClass, navLinks, nextPageByPath } from '@/lib/navigation'
 import { cn } from '@/lib/utils'
 
 export function SiteFooter() {
@@ -18,7 +18,7 @@ export function SiteFooter() {
         <Link href="/" className="flex shrink-0 items-center justify-self-start" aria-label="Cloudophile home">
           <Image src="/brands/cloudophile3.png" alt="Cloudophile" width={991} height={123} className="h-auto w-[5.6rem] object-contain sm:w-[7.7rem]" />
         </Link>
-        <div className="flex max-w-full flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm font-medium text-muted-foreground lg:gap-x-6">
+        <div className={`${navItemsClass} max-w-full flex-wrap justify-center gap-y-1`}>
           {navLinks.map((link) => {
             const isActive = pathname === link.href
             return <Link key={link.href} href={link.href} aria-current={isActive ? 'page' : undefined} className={cn(navLinkClass, isActive && navLinkActiveClass)}>{link.label}</Link>
