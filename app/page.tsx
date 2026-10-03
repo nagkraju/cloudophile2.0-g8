@@ -7,14 +7,10 @@ import { CompanyMarquee } from '@/components/company-marquee'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { Button } from '@/components/ui/button'
+import { getHomePaths } from '@/lib/site-content'
 
-const paths = [
-  { label: 'Experience', title: 'Leadership forged across the technology stack', copy: 'A journey through cloud, enterprise platforms, distributed systems, and transformation.', href: '/experience' },
-  { label: 'Expertise', title: 'Strategy grounded in systems thinking', copy: 'Enterprise AI, cloud platforms, architecture, and operating-model change.', href: '/expertise' },
-  { label: 'Advisory', title: 'Independent clarity for consequential decisions', copy: 'Focused guidance for executives navigating technology inflection points.', href: '/advisory' },
-]
-
-export default function HomePage() {
+export default async function HomePage() {
+  const paths = await getHomePaths()
   return (
     <main>
       <SiteHeader />

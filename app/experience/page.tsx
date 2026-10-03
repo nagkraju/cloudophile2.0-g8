@@ -7,7 +7,7 @@ import { CloudMesh } from '@/components/canvas/CloudMesh'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { Button } from '@/components/ui/button'
-import { getPageContent } from '@/lib/site-content'
+import { getExperiencePrinciples, getExperienceRoles, getPageContent } from '@/lib/site-content'
 
 export const metadata: Metadata = {
   title: 'Experience',
@@ -15,20 +15,10 @@ export const metadata: Metadata = {
   alternates: { canonical: '/experience' },
 }
 
-const roles = [
-  { period: 'Now', company: 'Microsoft', role: 'Director of Technology, Cloud & AI — EMEA', copy: 'Partnering with enterprise leaders to shape cloud, AI, and platform strategies that move from ambition to production.' },
-  { period: 'Previously', company: 'AWS & Amazon', role: 'Cloud and technology leadership', copy: 'Led complex architecture and transformation conversations where scale, resilience, and business outcomes had to move together.' },
-  { period: 'Foundation', company: 'Fidelity · Intuit · Cisco', role: 'Enterprise platforms and distributed systems', copy: 'Built deep operating experience across financial services, software platforms, infrastructure, and globally distributed systems.' },
-]
-
-const principles = [
-  ['Start with the decision', 'Make the business and operating decision explicit before choosing technology.'],
-  ['Design for reality', 'Architecture must account for people, controls, failure modes, and change—not only the ideal state.'],
-  ['Create durable leverage', 'Invest in platforms and capabilities that compound beyond a single program or migration.'],
-]
-
 export default async function ExperiencePage() {
   const content = await getPageContent('experience')
+  const roles = await getExperienceRoles()
+  const principles = await getExperiencePrinciples()
   return (
     <main>
       <SiteHeader />

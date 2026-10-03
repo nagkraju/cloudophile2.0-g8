@@ -24,6 +24,35 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## Content Database (Azure Cosmos DB)
+
+Page content is served from Azure Cosmos DB (NoSQL API, Serverless). Documents live in a single container partitioned by `/type`. Data access is server-only (`lib/cosmos.ts`, `lib/site-content.ts`).
+
+### Environment variables
+
+Copy `.env.example` to `.env.local` and set:
+
+| Variable | Description |
+| --- | --- |
+| `COSMOS_CONNECTION_STRING` | Full connection string. Use this **or** the endpoint/key pair below. |
+| `COSMOS_ENDPOINT` / `COSMOS_KEY` | Account endpoint and key (alternative to the connection string). |
+| `COSMOS_DATABASE` | Database name (default `cloudophile`). |
+| `COSMOS_CONTAINER` | Container name (default `content`, partition key `/type`). |
+
+On Azure Static Web Apps, add the same values as application settings.
+
+### Seeding
+
+```bash
+npm run seed:cosmos
+```
+
+Creates the database and container if missing and upserts the initial documents (idempotent).
+
+### Fallback behavior
+
+If Cosmos is not configured, unreachable, or a document is missing/unpublished, pages render built-in fallback content from `lib/fallback-content.ts`, so the site never returns a 500 because of the database. Content is cached for 5 minutes.
+
 ## Learn More
 
 To learn more, take a look at the following resources:

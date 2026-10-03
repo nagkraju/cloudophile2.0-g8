@@ -6,7 +6,7 @@ import { AccentedHeading } from '@/components/accented-heading'
 import { CloudMesh } from '@/components/canvas/CloudMesh'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
-import { getPageContent } from '@/lib/site-content'
+import { getArticles, getPageContent } from '@/lib/site-content'
 
 export const metadata: Metadata = {
   title: 'Articles',
@@ -14,35 +14,9 @@ export const metadata: Metadata = {
   alternates: { canonical: '/articles' },
 }
 
-const articles = [
-  {
-    category: 'Agentic AI',
-    title: 'The enterprise agent is an operating model, not a chatbot',
-    summary: 'Why durable agent adoption depends as much on ownership, controls, and workflow design as it does on model capability.',
-    readTime: '8 min read',
-  },
-  {
-    category: 'Cloud strategy',
-    title: 'Modernization is a sequence of decisions, not a destination',
-    summary: 'A practical framework for separating platform ambition from migration reality and creating measurable progress.',
-    readTime: '6 min read',
-  },
-  {
-    category: 'Architecture',
-    title: 'Designing for the failure modes your diagram leaves out',
-    summary: 'How executive and engineering teams can reason more clearly about resilience across distributed systems.',
-    readTime: '10 min read',
-  },
-  {
-    category: 'Leadership',
-    title: 'The questions technology leaders should ask before scaling AI',
-    summary: 'A decision guide for moving beyond pilots without accumulating governance, data, and architecture debt.',
-    readTime: '7 min read',
-  },
-]
-
 export default async function ArticlesPage() {
   const content = await getPageContent('articles')
+  const articles = await getArticles()
   return (
     <main>
       <SiteHeader />

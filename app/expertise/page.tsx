@@ -4,7 +4,7 @@ import { AccentedHeading } from '@/components/accented-heading'
 import { CloudMesh } from '@/components/canvas/CloudMesh'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
-import { getPageContent } from '@/lib/site-content'
+import { getCapabilities, getPageContent } from '@/lib/site-content'
 
 export const metadata: Metadata = {
   title: 'Expertise',
@@ -12,35 +12,9 @@ export const metadata: Metadata = {
   alternates: { canonical: '/expertise' },
 }
 
-const capabilities = [
-  {
-    eyebrow: '01 / Enterprise AI',
-    title: 'Agentic systems that survive contact with the enterprise',
-    description: 'Move from compelling demonstrations to governed, observable systems that work across real data, workflows, and operating constraints.',
-    outcomes: ['Agent and copilot strategy', 'Responsible AI operating models', 'Production architecture and evaluation'],
-  },
-  {
-    eyebrow: '02 / Cloud platforms',
-    title: 'Modernization built around business leverage',
-    description: 'Create a platform strategy that balances developer velocity, resilience, security, and cost without trading away operational control.',
-    outcomes: ['Multi-cloud and hybrid architecture', 'Platform engineering strategy', 'Migration and modernization roadmaps'],
-  },
-  {
-    eyebrow: '03 / Distributed systems',
-    title: 'Architecture for scale, failure, and change',
-    description: 'Design systems that remain understandable and dependable as traffic, teams, regions, and regulatory expectations grow.',
-    outcomes: ['Resilience and reliability reviews', 'Data and integration architecture', 'Technical due diligence'],
-  },
-  {
-    eyebrow: '04 / Transformation',
-    title: 'Aligning technology, operating model, and leadership',
-    description: 'Turn broad transformation ambition into explicit decisions, sequenced investments, and measurable business outcomes.',
-    outcomes: ['Executive decision frameworks', 'Technology portfolio strategy', 'Organization and capability design'],
-  },
-]
-
 export default async function ExpertisePage() {
   const content = await getPageContent('expertise')
+  const capabilities = await getCapabilities()
   return (
     <main>
       <SiteHeader />
