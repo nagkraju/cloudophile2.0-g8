@@ -7,12 +7,13 @@ import { CompanyMarquee } from '@/components/company-marquee'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { Button } from '@/components/ui/button'
-import { getHomePaths } from '@/lib/site-content'
+import { AccentedHeading } from '@/components/accented-heading'
+import { getHomePaths, getPageContent } from '@/lib/site-content'
 
 export const dynamic = 'force-dynamic'
 
 export default async function HomePage() {
-  const paths = await getHomePaths()
+  const [paths, content] = await Promise.all([getHomePaths(), getPageContent('home')])
   return (
     <main>
       <SiteHeader />
@@ -22,12 +23,12 @@ export default async function HomePage() {
           <div className="mx-auto max-w-5xl text-center">
             <div className="mb-8 flex items-center justify-center gap-3 font-mono text-[0.875rem] uppercase tracking-[0.16em] text-primary">
               <span className="block h-px w-10 bg-primary" />
-              <span>Cloud · Data · AI · Executive leadership</span>
+              <span>{content.eyebrow}</span>
               <span className="block h-px w-10 bg-primary" />
             </div>
-            <h1 className="mx-auto max-w-5xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.045em] sm:text-7xl lg:text-7xl">Architecting the future of enterprise cloud &amp; <span className="text-gradient">agentic AI.</span></h1>
+            <AccentedHeading className="mx-auto max-w-5xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.045em] sm:text-7xl lg:text-7xl">{content.title}</AccentedHeading>
             <div className="mx-auto mt-10 max-w-4xl">
-              <p className="mx-auto max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">Nag Kakarla — Director of Technology, Cloud &amp; AI (EMEA) at Microsoft. Building at the intersection of distributed systems, AI transformation, data, and executive strategy.</p>
+              <p className="mx-auto max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">{content.intro}</p>
             </div>
           </div>
         </div>
