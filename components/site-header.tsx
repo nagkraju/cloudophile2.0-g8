@@ -24,7 +24,7 @@ export function SiteHeader() {
             return <Link key={link.href} href={link.href} aria-current={isActive ? 'page' : undefined} className={cn(navLinkClass, isActive && navLinkActiveClass)}>{link.label}</Link>
           })}
         </div>
-        <Button nativeButton={false} render={<Link href="/contact" />} size="sm" className="hidden shrink-0 lg:inline-flex">Start a conversation <ArrowRight data-icon="inline-end" /></Button>
+        <Button nativeButton={false} render={<Link href="/contact" />} size="sm" className="hidden w-[134px] shrink-0 justify-center gap-1 whitespace-nowrap px-2 text-xs lg:inline-flex">Start conversation <ArrowRight data-icon="inline-end" /></Button>
       </nav>
     </header>
   )
