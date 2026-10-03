@@ -24,14 +24,14 @@ export default async function ExperiencePage() {
       <SiteHeader />
       <section className="relative isolate overflow-hidden border-b border-border">
         <CloudMesh />
-        <div className="relative mx-auto max-w-7xl px-5 py-20 sm:py-28 lg:px-8 lg:py-36">
+        <div className="relative mx-auto max-w-7xl px-5 py-12 sm:py-16 lg:px-8 lg:py-20">
           <p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">{content.eyebrow}</p>
           <AccentedHeading className="mt-6 max-w-5xl text-balance text-5xl font-semibold leading-none tracking-[-0.045em] sm:text-7xl">{content.title}</AccentedHeading>
           <p className="mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">{content.intro}</p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-28">
+      <section className="mx-auto max-w-7xl px-5 py-12 lg:px-8 lg:py-16">
         <p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-muted-foreground">Techno-leadership journey</p>
         <div className="mt-8 divide-y divide-border border-y border-border">
           {roles.map((item) => (
@@ -45,7 +45,7 @@ export default async function ExperiencePage() {
       </section>
 
       <section className="border-y border-border bg-card">
-        <div className="mx-auto max-w-7xl px-5 py-20 lg:px-8 lg:py-24">
+        <div className="mx-auto max-w-7xl px-5 py-12 lg:px-8 lg:py-14">
           <p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">Operating principles</p>
           <div className="mt-8 grid border-l border-t border-border md:grid-cols-3">
             {principles.map(([title, copy]) => <article key={title} className="border-b border-r border-border p-7"><h2 className="text-xl font-semibold">{title}</h2><p className="mt-4 leading-relaxed text-muted-foreground">{copy}</p></article>)}

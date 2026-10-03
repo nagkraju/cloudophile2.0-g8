@@ -33,23 +33,24 @@
 
 :root {
   color-scheme: dark;
-  --background: #0b0f17;
-  --foreground: #f4f7fb;
-  --card: #111827;
-  --card-foreground: #f4f7fb;
-  --popover: #111827;
-  --popover-foreground: #f4f7fb;
+  /* Neutral near-black base (temporal.io) with a blue → violet ambient wash that mirrors the .text-gradient hue path. */
+  --background: #1c1d22;
+  --foreground: #f8fafc;
+  --card: #25262d;
+  --card-foreground: #f8fafc;
+  --popover: #25262d;
+  --popover-foreground: #f8fafc;
   --primary: #1877f2;
-  --primary-foreground: #f4f7fb;
-  --secondary: #111827;
-  --secondary-foreground: #f4f7fb;
-  --muted: #111827;
-  --muted-foreground: #94a3b8;
+  --primary-foreground: #f8fafc;
+  --secondary: #25262d;
+  --secondary-foreground: #f8fafc;
+  --muted: #25262d;
+  --muted-foreground: #aab0bc;
   --accent: #7c5cff;
-  --accent-foreground: #f4f7fb;
+  --accent-foreground: #f8fafc;
   --destructive: #7c5cff;
-  --border: color-mix(in srgb, #f4f7fb 10%, transparent);
-  --input: color-mix(in srgb, #f4f7fb 14%, transparent);
+  --border: color-mix(in srgb, #f8fafc 10%, transparent);
+  --input: color-mix(in srgb, #f8fafc 14%, transparent);
   --ring: #1877f2;
   --radius: 0.55rem;
 }
@@ -64,7 +65,16 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background-color: var(--background);
+    /* Blue (left) → violet (right), mirroring the .text-gradient hue path. Washes are centered vertically and span the full height so the top and bottom halves read identically. */
+    background-image:
+      radial-gradient(ellipse 58% 140% at 0% 50%, color-mix(in srgb, var(--primary) 30%, transparent), transparent 64%),
+      radial-gradient(ellipse 58% 140% at 100% 50%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 64%),
+      linear-gradient(90deg, color-mix(in srgb, var(--primary) 12%, var(--background)), var(--background) 50%, color-mix(in srgb, var(--accent) 12%, var(--background)));
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
 
   ::selection {

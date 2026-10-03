@@ -22,7 +22,7 @@ export default async function TestimonialsPage() {
       <main>
         <section className="relative isolate overflow-hidden border-b border-border">
           <CloudMesh />
-          <div className="relative mx-auto max-w-7xl px-5 py-20 sm:py-24 lg:px-8 lg:py-28">
+          <div className="relative mx-auto max-w-7xl px-5 py-12 sm:py-14 lg:px-8 lg:py-16">
             <p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">{content.eyebrow}</p>
             <AccentedHeading className="mt-6 max-w-5xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.045em] sm:text-7xl">{content.title}</AccentedHeading>
             <p className="mt-8 max-w-3xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">{content.intro}</p>
@@ -30,7 +30,7 @@ export default async function TestimonialsPage() {
         </section>
 
         <section aria-labelledby="testimonial-grid-heading">
-          <div className="mx-auto max-w-7xl px-5 py-16 sm:py-20 lg:px-8 lg:py-24">
+          <div className="mx-auto max-w-7xl px-5 py-16 sm:py-12 lg:px-8 lg:py-14">
             <h2 id="testimonial-grid-heading" className="sr-only">Testimonials about Nag Kakarla</h2>
             <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-2">
               {testimonials.map((testimonial) => (
