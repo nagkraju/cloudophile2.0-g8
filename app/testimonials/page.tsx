@@ -7,7 +7,7 @@ import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { getPageContent, getTestimonials } from '@/lib/site-content'
 
-export const revalidate = 300
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Testimonials',

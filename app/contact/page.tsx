@@ -8,7 +8,7 @@ import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { getContactExpectations, getPageContent } from '@/lib/site-content'
 
-export const revalidate = 300
+export const dynamic = 'force-dynamic'
 
 const expectationIcons: Record<string, typeof Mail> = { clock: Clock3, shield: ShieldCheck, mail: Mail }
 
