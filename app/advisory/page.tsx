@@ -7,6 +7,8 @@ import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { getEngagements } from '@/lib/site-content'
 
+export const revalidate = 300
+
 export const metadata: Metadata = { title: 'Executive Advisory', description: 'Independent executive advisory for consequential cloud, AI, platform, and technology transformation decisions.', alternates: { canonical: '/advisory' } }
 
 export default async function AdvisoryPage() {

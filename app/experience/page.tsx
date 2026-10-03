@@ -9,6 +9,8 @@ import { SiteHeader } from '@/components/site-header'
 import { Button } from '@/components/ui/button'
 import { getExperiencePrinciples, getExperienceRoles, getPageContent } from '@/lib/site-content'
 
+export const revalidate = 300
+
 export const metadata: Metadata = {
   title: 'Experience',
   description: 'Nag Kakarla’s technology leadership journey across Microsoft, AWS, Amazon, Fidelity, Intuit, and Cisco.',

@@ -7,6 +7,8 @@ import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { getPageContent, getTestimonials } from '@/lib/site-content'
 
+export const revalidate = 300
+
 export const metadata: Metadata = {
   title: 'Testimonials',
   description: 'Perspectives on Nag Kakarla’s leadership across cloud, enterprise architecture, AI transformation, and executive technology strategy.',
