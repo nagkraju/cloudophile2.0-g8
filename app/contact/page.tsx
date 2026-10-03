@@ -24,9 +24,9 @@ export default async function ContactPage() {
   return (
     <main>
       <SiteHeader />
-      <section className="relative isolate overflow-hidden border-b border-border"><CloudMesh /><div className="relative mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:py-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12 lg:px-8 lg:py-16">
+      <section className="relative isolate overflow-hidden border-b border-border"><CloudMesh /><div className="relative mx-auto grid max-w-screen-2xl gap-8 px-4 sm:px-6 py-12 sm:py-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-12 lg:px-8 lg:py-16">
           <div className="flex flex-col gap-10">
-            <div><p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">{content.eyebrow}</p><AccentedHeading className="mt-6 text-balance text-5xl font-semibold leading-none tracking-[-0.045em] sm:text-7xl">{content.title}</AccentedHeading><p className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">{content.intro}</p></div>
+            <div><p className="text-center font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">{content.eyebrow}</p><AccentedHeading className="mt-6 text-balance text-5xl font-semibold leading-none tracking-[-0.045em] sm:text-7xl">{content.title}</AccentedHeading><p className="mx-auto mt-8 max-w-xl text-pretty text-center text-lg leading-relaxed text-muted-foreground">{content.intro}</p></div>
             <div className="divide-y divide-border border-y border-border">{expectations.map(({ icon, title, copy }) => { const Icon = expectationIcons[icon] ?? Mail; return <div key={title} className="flex gap-4 py-5"><Icon className="mt-1 size-5 shrink-0 text-primary" aria-hidden="true" /><div><h2 className="font-medium">{title}</h2><p className="mt-1 text-sm leading-relaxed text-muted-foreground">{copy}</p></div></div> })}</div>
           </div>
           <ContactForm />

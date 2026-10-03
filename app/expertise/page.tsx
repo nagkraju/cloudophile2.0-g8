@@ -22,14 +22,14 @@ export default async function ExpertisePage() {
       <SiteHeader />
       <section className="relative isolate overflow-hidden border-b border-border">
         <CloudMesh />
-        <div className="relative mx-auto max-w-7xl px-5 py-12 sm:py-16 lg:px-8 lg:py-20">
-          <p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">{content.eyebrow}</p>
-          <AccentedHeading className="mt-6 max-w-5xl text-balance text-5xl font-semibold leading-none tracking-[-0.045em] sm:text-7xl">{content.title}</AccentedHeading>
-          <p className="mt-8 max-w-2xl text-pretty text-lg leading-relaxed text-muted-foreground">{content.intro}</p>
+        <div className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 py-12 sm:py-16 lg:px-8 lg:py-20">
+          <p className="text-center font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">{content.eyebrow}</p>
+          <AccentedHeading className="mx-auto mt-6 max-w-5xl text-balance text-center text-5xl font-semibold leading-none tracking-[-0.045em] sm:text-7xl">{content.title}</AccentedHeading>
+          <p className="mx-auto mt-8 max-w-2xl text-pretty text-center text-lg leading-relaxed text-muted-foreground">{content.intro}</p>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-12 lg:px-8 lg:py-16">
+      <section className="mx-auto max-w-screen-2xl px-4 sm:px-6 py-12 lg:px-8 lg:py-16">
         <div className="divide-y divide-border border-y border-border">
           {capabilities.map((capability) => (
             <article key={capability.eyebrow} className="grid gap-8 py-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-12 lg:py-14">
