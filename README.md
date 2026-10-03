@@ -53,6 +53,14 @@ Creates the database and container if missing and upserts the initial documents 
 
 If Cosmos is not configured, unreachable, or a document is missing/unpublished, pages render built-in fallback content from `lib/fallback-content.ts`, so the site never returns a 500 because of the database. Content is cached for 5 minutes.
 
+## Deployment (Azure Static Web Apps)
+
+- Live site: https://delightful-cliff-0c0527e00.5.azurestaticapps.net
+- Static Web App `cloudophile-swa` (Standard plan, required for hybrid Next.js SSR) in the `cloudophile` resource group.
+- App settings on the SWA: `COSMOS_CONNECTION_STRING`, `COSMOS_DATABASE`, `COSMOS_CONTAINER`.
+- Deployment: `.github/workflows/azure-static-web-apps.yml` runs on every push to `main`, using the GitHub secret `AZURE_STATIC_WEB_APPS_API_TOKEN`.
+- Content is cached for 5 minutes, so Cosmos edits appear on the site within that window.
+
 ## Learn More
 
 To learn more, take a look at the following resources:
