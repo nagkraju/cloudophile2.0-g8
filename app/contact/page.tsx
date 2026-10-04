@@ -44,7 +44,7 @@ export default async function ContactPage() {
                 <a href="https://topmate.io/nag_kakarla" target="_blank" rel="noopener noreferrer" aria-label="Topmate" className="rounded bg-white px-2 py-1"><Image src="/topmate-logo.svg" alt="Topmate" width={194} height={36} className="h-6 w-auto" /></a>
               </div>
               <div className="mt-4 grid grid-cols-2 gap-3">
-                {topmateLinks.map(({ label, href }) => <a key={href} href={href} target="_blank" rel="noopener noreferrer" className="flex min-h-20 items-center justify-center border border-border p-3 text-center text-sm font-medium transition-colors hover:border-primary hover:text-primary">{label}</a>)}
+                {topmateLinks.map(({ label, href }) => <a key={href} href={href} target="_blank" rel="noopener noreferrer" className="flex min-h-24 items-center justify-center rounded-xl border border-border p-4 text-center text-base font-medium sm:text-lg transition-colors hover:border-primary hover:text-primary">{label}</a>)}
               </div>
             </div>
             <ContactForm copy={form} />
