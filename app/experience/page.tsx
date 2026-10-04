@@ -7,7 +7,7 @@ import { CloudMesh } from '@/components/canvas/CloudMesh'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { Button } from '@/components/ui/button'
-import { getExperiencePrinciples, getExperienceRoles, getPageContent } from '@/lib/site-content'
+import { getExperiencePrinciples, getExperienceRoles, getPageContent, getPageCopy } from '@/lib/site-content'
 
 export const dynamic = 'force-dynamic'
 
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 export default async function ExperiencePage() {
-  const content = await getPageContent('experience')
+  const [content, copy] = await Promise.all([getPageContent('experience'), getPageCopy('experience')])
   const roles = await getExperienceRoles()
   const principles = await getExperiencePrinciples()
   return (
@@ -34,7 +34,7 @@ export default async function ExperiencePage() {
       </section>
 
       <section className="mx-auto max-w-screen-2xl px-4 sm:px-6 py-12 lg:px-8 lg:py-16">
-        <p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-muted-foreground">Techno-leadership journey</p>
+        <p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-muted-foreground">{copy.journeyLabel}</p>
         <div className="mt-8 divide-y divide-border border-y border-border">
           {roles.map((item) => (
             <article key={item.company} className="grid gap-5 py-10 md:grid-cols-[8rem_14rem_1fr] md:gap-10">
@@ -48,14 +48,17 @@ export default async function ExperiencePage() {
 
       <section className="border-y border-border bg-card">
         <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 py-12 lg:px-8 lg:py-14">
-          <p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">Operating principles</p>
+          <p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">{copy.principlesLabel}</p>
           <div className="mt-8 grid border-l border-t border-border md:grid-cols-3">
             {principles.map(([title, copy]) => <article key={title} className="border-b border-r border-border p-7"><h2 className="text-xl font-semibold">{title}</h2><p className="mt-4 leading-relaxed text-muted-foreground">{copy}</p></article>)}
           </div>
-          <Button className="mt-8" nativeButton={false} render={<Link href="/expertise" />} size="lg">Explore expertise <ArrowRight data-icon="inline-end" /></Button>
+          <Button className="mt-8" nativeButton={false} render={<Link href={copy.ctaHref} />} size="lg">{copy.ctaLabel} <ArrowRight data-icon="inline-end" /></Button>
         </div>
       </section>
       <SiteFooter />
     </main>
   )
 }
+
+
+

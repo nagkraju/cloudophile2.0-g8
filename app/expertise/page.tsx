@@ -4,7 +4,7 @@ import { AccentedHeading } from '@/components/accented-heading'
 import { CloudMesh } from '@/components/canvas/CloudMesh'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
-import { getCapabilities, getPageContent } from '@/lib/site-content'
+import { getCapabilities, getPageContent, getPageCopy } from '@/lib/site-content'
 
 export const dynamic = 'force-dynamic'
 
@@ -51,3 +51,5 @@ export default async function ExpertisePage() {
     </main>
   )
 }
+
+

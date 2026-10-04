@@ -68,3 +68,15 @@ To learn more, take a look at the following resources:
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 - [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+
+## Content model
+
+All page text comes from Cosmos (container `content`, partition key `/type`), cached for 5 minutes, with built-in fallbacks in `lib/fallback-content.ts`.
+
+- `page-<slug>`: `eyebrow`, `title`, `intro`, `copy` (all other page strings), plus lists (`engagements`, `paths`, `roles`, `principles`, `capabilities`, `articles`, `expectations`). `page-home` also has `marquee` and `systems`; `page-contact` has `form`.
+- `testimonial-*`: one testimonial each.
+- `setting-site`: header/footer text (tagline, owner name, CTA).
+- `navigation-main`: `links` for header/footer.
+
+Re-running `npm run seed:cosmos` is merge-safe: existing Cosmos values are never overwritten.
+

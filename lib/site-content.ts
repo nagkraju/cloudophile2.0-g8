@@ -1,5 +1,5 @@
 import { getContentContainer } from '@/lib/cosmos'
-import { fallbackContent, fallbackEngagements, fallbackTestimonials, fallbackPaths, fallbackRoles, fallbackPrinciples, fallbackCapabilities, fallbackArticles, fallbackExpectations, type Engagement, type Testimonial } from '@/lib/fallback-content'
+import { fallbackContent, fallbackEngagements, fallbackTestimonials, fallbackPaths, fallbackRoles, fallbackPrinciples, fallbackCapabilities, fallbackArticles, fallbackExpectations, fallbackCopy, fallbackSite, fallbackNav, fallbackMarquee, fallbackSystems, fallbackForm, type FormCopy, type Engagement, type Testimonial } from '@/lib/fallback-content'
 import type { BaseDocument } from '@/src/types/db'
 import { unstable_cache } from 'next/cache'
 
@@ -116,3 +116,70 @@ export const getExperiencePrinciples = makeListLoader('experience', 'principles'
 export const getCapabilities = makeListLoader('expertise', 'capabilities', fallbackCapabilities)
 export const getArticles = makeListLoader('articles', 'articles', fallbackArticles)
 export const getContactExpectations = makeListLoader('contact', 'expectations', fallbackExpectations)
+
+async function readDoc(id: string, partition: string): Promise<BaseDocument | null> {
+  const container = getContentContainer()
+  if (!container) return null
+  try {
+    const { resource } = await container.item(id, partition).read<BaseDocument>()
+    return resource?.published ? resource : null
+  } catch {
+    return null
+  }
+}
+
+function cleanStrings(source: unknown, fallback: Record<string, string>): Record<string, string> {
+  const raw = source && typeof source === 'object' ? (source as Record<string, unknown>) : {}
+  const out: Record<string, string> = {}
+  for (const key of Object.keys(fallback)) out[key] = stringValue(raw[key], fallback[key])
+  return out
+}
+
+const cachedPageData = unstable_cache(async (slug: string) => (await readDoc(`page-${slug}`, 'page'))?.data ?? null, ['page-data'], { revalidate: 300, tags: ['site-content'] })
+
+async function pageData(slug: string): Promise<Record<string, unknown> | null> {
+  try { return await cachedPageData(slug) } catch { return null }
+}
+
+// Section labels, link text and metadata for a page (data.copy), with per-field fallbacks.
+export async function getPageCopy(slug: keyof typeof fallbackCopy) {
+  const data = await pageData(slug)
+  return cleanStrings(data?.copy, fallbackCopy[slug])
+}
+
+export async function getMarquee() {
+  const data = await pageData('home')
+  const m = data?.marquee
+  return Array.isArray(m) && m.length ? (m as { name: string; src: string }[]) : fallbackMarquee
+}
+
+export async function getSystems() {
+  const data = await pageData('home')
+  const s = data?.systems
+  return Array.isArray(s) && s.length ? (s as { label: string; copy: string; kind: string }[]) : fallbackSystems
+}
+
+export async function getContactForm(): Promise<FormCopy> {
+  const data = await pageData('contact')
+  const raw = (data?.form && typeof data.form === 'object' ? data.form : {}) as Record<string, unknown>
+  const { topics, ...strings } = fallbackForm
+  const merged = cleanStrings(raw, strings as Record<string, string>)
+  const t = raw.topics
+  return { ...(merged as Omit<FormCopy, 'topics'>), topics: Array.isArray(t) && t.length ? (t as FormCopy['topics']) : topics }
+}
+
+const cachedSite = unstable_cache(async () => (await readDoc('setting-site', 'setting'))?.data ?? null, ['setting-site'], { revalidate: 300, tags: ['site-content'] })
+export async function getSiteSettings() {
+  let data: Record<string, unknown> | null = null
+  try { data = await cachedSite() } catch {}
+  return cleanStrings(data, fallbackSite)
+}
+
+const cachedNav = unstable_cache(async () => (await readDoc('navigation-main', 'navigation'))?.data?.links ?? null, ['navigation-main'], { revalidate: 300, tags: ['site-content'] })
+export async function getNavigation() {
+  try {
+    const links = await cachedNav()
+    if (Array.isArray(links) && links.length && links.every((l) => l && typeof l.label === 'string' && typeof l.href === 'string')) return links as { label: string; href: string }[]
+  } catch {}
+  return fallbackNav
+}

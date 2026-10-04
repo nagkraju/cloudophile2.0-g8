@@ -1,15 +1,8 @@
 import Image from 'next/image'
 
-const companies = [
-  { name: 'Microsoft', src: '/brands/microsoft.svg' },
-  { name: 'Amazon', src: '/brands/aws-uploaded.jpg' },
-  { name: 'Fidelity', src: '/brands/fidelity-uploaded.jpeg' },
-  { name: 'LTM', src: '/brands/ltm.svg' },
-  { name: 'Intuit', src: '/brands/intuit.svg' },
-  { name: 'Cisco', src: '/brands/cisco.svg' },
-]
+type Company = { name: string; src: string }
 
-function CompanyList({ hidden = false }: { hidden?: boolean }) {
+function CompanyList({ companies, hidden = false }: { companies: Company[]; hidden?: boolean }) {
   return (
     <ul className="marquee-group flex shrink-0 items-center" aria-hidden={hidden || undefined}>
       {companies.map((company) => (
@@ -24,6 +17,8 @@ function CompanyList({ hidden = false }: { hidden?: boolean }) {
   )
 }
 
-export function CompanyMarquee() {
-  return <section aria-labelledby="journey-title" className="overflow-hidden border-b border-border bg-card/40"><div className="mx-auto flex max-w-screen-2xl items-center gap-6 px-4 sm:px-6 py-6 lg:px-8"><p id="journey-title" className="shrink-0 font-mono text-[0.875rem] uppercase tracking-[0.18em] text-muted-foreground">Techno-leadership journey</p><div className="marquee-track flex min-w-0 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"><CompanyList /><CompanyList hidden /></div></div></section>
+export function CompanyMarquee({ label, companies }: { label: string; companies: Company[] }) {
+  return <section aria-labelledby="journey-title" className="overflow-hidden border-b border-border bg-card/40"><div className="mx-auto flex max-w-screen-2xl items-center gap-6 px-4 sm:px-6 py-6 lg:px-8"><p id="journey-title" className="shrink-0 font-mono text-[0.875rem] uppercase tracking-[0.18em] text-muted-foreground">{label}</p><div className="marquee-track flex min-w-0 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"><CompanyList companies={companies} /><CompanyList companies={companies} hidden /></div></div></section>
 }
+
+

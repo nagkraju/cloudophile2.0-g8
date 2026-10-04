@@ -1,3 +1,4 @@
+import { ArrowUpRight } from 'lucide-react'
 import type { Metadata } from 'next'
 import Image from 'next/image'
 
@@ -5,7 +6,7 @@ import { AccentedHeading } from '@/components/accented-heading'
 import { CloudMesh } from '@/components/canvas/CloudMesh'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
-import { getPageContent, getTestimonials } from '@/lib/site-content'
+import { getPageContent, getPageCopy, getTestimonials } from '@/lib/site-content'
 
 export const dynamic = 'force-dynamic'
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
 }
 
 export default async function TestimonialsPage() {
-  const [content, testimonials] = await Promise.all([getPageContent('testimonials'), getTestimonials()])
+  const [content, testimonials, copy] = await Promise.all([getPageContent('testimonials'), getTestimonials(), getPageCopy('testimonials')])
 
   return (
     <>
@@ -33,11 +34,11 @@ export default async function TestimonialsPage() {
 
         <section aria-labelledby="testimonial-grid-heading">
           <div className="mx-auto max-w-screen-2xl px-4 sm:px-6 py-16 sm:py-12 lg:px-8 lg:py-14">
-            <h2 id="testimonial-grid-heading" className="sr-only">Testimonials about Nag Kakarla</h2>
+            <h2 id="testimonial-grid-heading" className="sr-only">{copy.gridHeading}</h2>
             <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border md:grid-cols-2">
               {testimonials.map((testimonial) => (
                 <article key={testimonial.id} className="flex min-h-80 flex-col justify-between gap-10 bg-card p-7 sm:p-9">
-                  <blockquote className="text-pretty text-xl font-medium leading-relaxed text-card-foreground sm:text-2xl">
+                  <blockquote className="text-pretty text-lg font-medium leading-relaxed text-card-foreground sm:text-xl">
                     <span aria-hidden="true" className="mr-1 text-primary">“</span>
                     {testimonial.quote}
                     <span aria-hidden="true" className="ml-1 text-primary">”</span>
@@ -56,6 +57,7 @@ export default async function TestimonialsPage() {
                 </article>
               ))}
             </div>
+            <p className="mt-8 text-center"><a href={copy.linkedinUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary">{copy.linkedinLabel} <ArrowUpRight className="size-4" aria-hidden="true" /></a></p>
           </div>
         </section>
       </main>
@@ -63,3 +65,7 @@ export default async function TestimonialsPage() {
     </>
   )
 }
+
+
+
+

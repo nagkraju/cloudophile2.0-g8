@@ -6,18 +6,21 @@ import { AccentedHeading } from '@/components/accented-heading'
 import { CloudMesh } from '@/components/canvas/CloudMesh'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
-import { getArticles, getPageContent } from '@/lib/site-content'
+import { getArticles, getPageContent, getPageCopy } from '@/lib/site-content'
 
 export const dynamic = 'force-dynamic'
 
-export const metadata: Metadata = {
-  title: 'Articles',
-  description: 'Writing and perspectives on enterprise AI, cloud architecture, distributed systems, and technology leadership.',
-  alternates: { canonical: '/articles' },
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getPageContent('articles')
+  return {
+    title: content.title,
+    description: content.intro,
+    alternates: { canonical: '/articles' },
+  }
 }
 
 export default async function ArticlesPage() {
-  const content = await getPageContent('articles')
+  const [content, copy] = await Promise.all([getPageContent('articles'), getPageCopy('articles')])
   const articles = await getArticles()
   return (
     <main>
@@ -43,17 +46,19 @@ export default async function ArticlesPage() {
                 <h2 className="text-balance text-2xl font-semibold tracking-[-0.025em] sm:text-3xl">{article.title}</h2>
                 <p className="text-pretty leading-relaxed text-muted-foreground">{article.summary}</p>
                 <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-medium text-foreground">
-                  Discuss this topic <ArrowUpRight className="size-4" aria-hidden="true" />
+                  {copy.cardLink} <ArrowUpRight className="size-4" aria-hidden="true" />
                 </Link>
               </div>
             </article>
           ))}
         </div>
         <p className="mt-8 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Full essays are being prepared for publication. In the meantime, connect to discuss any of these themes with Nag.
+          {copy.note}
         </p>
       </section>
       <SiteFooter />
     </main>
   )
 }
+
+

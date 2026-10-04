@@ -120,3 +120,117 @@ export const fallbackExpectations = [
   { icon: 'mail', title: 'Direct conversation', copy: 'No sales sequence. No newsletter enrollment. Just a useful first exchange.' },
 ]
 
+
+const linkedin = 'https://www.linkedin.com/in/nagkraju/'
+
+export const fallbackCopy: Record<string, Record<string, string>> = {
+  home: {
+    metaTitle: 'Nag Kakarla — Enterprise Cloud & AI Executive',
+    metaDescription: 'Architecting the future of enterprise cloud and agentic AI.',
+    marqueeLabel: 'Techno-leadership journey',
+    systemsEyebrow: 'Systems in motion',
+    systemsTitle: 'From infrastructure to intelligence.',
+    pathsEyebrow: 'Navigate the work',
+    pathsTitle: 'Technology leadership for inflection points.',
+    pathsLinkPrefix: 'Explore',
+    ctaEyebrow: 'Continue the conversation',
+    ctaTitle: 'Connect beyond the website.',
+    ctaLabel: 'Connect with me on LinkedIn',
+    ctaUrl: 'https://linkedin.com/in/nagkraju',
+  },
+  experience: {
+    metaTitle: 'Experience',
+    metaDescription: 'Nag Kakarla’s technology leadership journey across Microsoft, AWS, Amazon, Fidelity, Intuit, and Cisco.',
+    journeyLabel: 'Techno-leadership journey',
+    principlesLabel: 'Operating principles',
+    ctaLabel: 'Explore expertise',
+    ctaHref: '/expertise',
+  },
+  expertise: {
+    metaTitle: 'Expertise',
+    metaDescription: 'Enterprise cloud, agentic AI, platform modernization, and executive technology leadership expertise from Nag Kakarla.',
+  },
+  testimonials: {
+    metaTitle: 'Testimonials',
+    metaDescription: 'Perspectives on Nag Kakarla’s leadership across cloud, enterprise architecture, AI transformation, and executive technology strategy.',
+    gridHeading: 'Testimonials about Nag Kakarla',
+    linkedinLabel: 'More testimonials on LinkedIn',
+    linkedinUrl: 'https://www.linkedin.com/in/nagkraju/details/recommendations/?detailScreenTabIndex=0',
+  },
+  articles: {
+    metaTitle: 'Articles',
+    metaDescription: 'Writing and perspectives on enterprise AI, cloud architecture, distributed systems, and technology leadership.',
+    cardLink: 'Discuss this topic',
+    note: 'Full essays are being prepared for publication. In the meantime, connect to discuss any of these themes with Nag.',
+  },
+  advisory: {
+    metaTitle: 'Executive Advisory',
+    metaDescription: 'Independent executive advisory for consequential cloud, AI, platform, and technology transformation decisions.',
+    engagementsLabel: 'Ways to work together',
+  },
+  contact: {
+    metaTitle: 'Contact',
+    metaDescription: 'Start a conversation with Nag Kakarla about executive advisory, enterprise AI, cloud platforms, or technology leadership.',
+  },
+}
+
+export const fallbackSite = {
+  tagline: 'Enterprise Cloud, Data, AI, and technology leadership.',
+  ownerName: 'Nag Kakarla',
+  headerCtaLabel: 'Start conversation',
+  headerCtaHref: '/contact',
+  footerExplorePrefix: 'Explore',
+  linkedinUrl: linkedin,
+}
+
+export const fallbackNav = [
+  { label: 'Home', href: '/' },
+  { label: 'Experience', href: '/experience' },
+  { label: 'Expertise', href: '/expertise' },
+  { label: 'Testimonials', href: '/testimonials' },
+  { label: 'Articles', href: '/articles' },
+  { label: 'Advisory', href: '/advisory' },
+  { label: 'Contact', href: '/contact' },
+]
+
+export const fallbackMarquee = [
+  { name: 'Microsoft', src: '/brands/microsoft.svg' },
+  { name: 'Amazon', src: '/brands/aws-uploaded.jpg' },
+  { name: 'Fidelity', src: '/brands/fidelity-uploaded.jpeg' },
+  { name: 'LTM', src: '/brands/ltm.svg' },
+  { name: 'Intuit', src: '/brands/intuit.svg' },
+  { name: 'Cisco', src: '/brands/cisco.svg' },
+]
+
+export const fallbackSystems = [
+  { label: 'Cloud', copy: 'Platforms that scale with the enterprise.', kind: 'cloud' },
+  { label: 'Data', copy: 'Trusted signals flowing into decisions.', kind: 'data' },
+  { label: 'AI', copy: 'Agentic systems with accountable control.', kind: 'ai' },
+  { label: 'Architecture', copy: 'Connected systems with clear boundaries.', kind: 'architecture' },
+]
+
+export const fallbackForm = {
+  name: 'Name',
+  email: 'Work email',
+  company: 'Company',
+  phone: 'Contact#',
+  topicLabel: 'What would you like to discuss?',
+  topicPlaceholder: 'Select a topic',
+  messageLabel: 'How can I help?',
+  messagePlaceholder: 'Share the decision, challenge, or opportunity you are working through.',
+  disclaimer: 'By submitting, you agree that your details may be used to respond to this inquiry. No mailing lists, no automated follow-ups.',
+  submit: 'Send message',
+  sending: 'Sending…',
+  success: 'Thank you. Your message has been sent and I’ll be in touch soon.',
+  topics: [
+    { value: 'executive-advisory', label: 'Executive advisory' },
+    { value: 'ai-strategy', label: 'Enterprise AI strategy' },
+    { value: 'cloud-platform', label: 'Cloud or platform strategy' },
+    { value: 'speaking', label: 'Speaking or leadership session' },
+    { value: 'career-coaching', label: 'Career coaching' },
+    { value: 'big-tech-interview', label: 'Big Tech Interview preparation' },
+    { value: 'resume-writing', label: 'Resume writing' },
+    { value: 'other', label: 'Another conversation' },
+  ],
+}
+export type FormCopy = typeof fallbackForm

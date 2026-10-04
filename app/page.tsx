@@ -8,12 +8,17 @@ import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { Button } from '@/components/ui/button'
 import { AccentedHeading } from '@/components/accented-heading'
-import { getHomePaths, getPageContent } from '@/lib/site-content'
+import { getHomePaths, getPageContent, getPageCopy, getMarquee, getSystems } from '@/lib/site-content'
 
 export const dynamic = 'force-dynamic'
 
+export async function generateMetadata() {
+  const copy = await getPageCopy('home')
+  return { title: copy.metaTitle, description: copy.metaDescription }
+}
+
 export default async function HomePage() {
-  const [paths, content] = await Promise.all([getHomePaths(), getPageContent('home')])
+  const [paths, content, copy, marquee, systems] = await Promise.all([getHomePaths(), getPageContent('home'), getPageCopy('home'), getMarquee(), getSystems()])
   return (
     <main>
       <SiteHeader />
@@ -34,14 +39,15 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <CompanyMarquee />
-      <CapabilityMotionGrid />
+      <CompanyMarquee label={copy.marqueeLabel} companies={marquee} />
+      <CapabilityMotionGrid eyebrow={copy.systemsEyebrow} title={copy.systemsTitle} items={systems} />
 
       <section className="mx-auto max-w-screen-2xl px-4 sm:px-6 py-14 lg:px-8 lg:py-20">
-        <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:gap-12"><div><p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">Navigate the work</p><h2 className="mt-5 text-balance text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">Technology leadership for inflection points.</h2></div><div className="divide-y divide-border border-y border-border">{paths.map((item) => <article key={item.label} className="grid gap-4 py-8 sm:grid-cols-[8rem_1fr] sm:py-10"><p className="font-mono text-[0.875rem] uppercase tracking-[0.16em] text-primary">{item.label}</p><div className="flex flex-col gap-3"><h3 className="text-balance text-2xl font-medium tracking-tight">{item.title}</h3><p className="max-w-xl leading-relaxed text-muted-foreground">{item.copy}</p><Link href={item.href} className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-foreground">Explore {item.label.toLowerCase()} <ArrowRight className="size-4" aria-hidden="true" /></Link></div></article>)}</div></div>
+        <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:gap-12"><div><p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">{copy.pathsEyebrow}</p><h2 className="mt-5 text-balance text-4xl font-semibold tracking-[-0.035em] sm:text-5xl">{copy.pathsTitle}</h2></div><div className="divide-y divide-border border-y border-border">{paths.map((item) => <article key={item.label} className="grid gap-4 py-8 sm:grid-cols-[8rem_1fr] sm:py-10"><p className="font-mono text-[0.875rem] uppercase tracking-[0.16em] text-primary">{item.label}</p><div className="flex flex-col gap-3"><h3 className="text-balance text-2xl font-medium tracking-tight">{item.title}</h3><p className="max-w-xl leading-relaxed text-muted-foreground">{item.copy}</p><Link href={item.href} className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-foreground">{copy.pathsLinkPrefix} {item.label.toLowerCase()} <ArrowRight className="size-4" aria-hidden="true" /></Link></div></article>)}</div></div>
       </section>
-      <section className="border-t border-border"><div className="mx-auto flex max-w-screen-2xl flex-col gap-6 px-4 sm:px-6 py-16 sm:flex-row sm:items-center sm:justify-between lg:px-8"><div><p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">Continue the conversation</p><h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight">Connect beyond the website.</h2></div><Button nativeButton={false} render={<a href="https://linkedin.com/in/nagkraju" target="_blank" rel="noreferrer" />} size="lg">Connect with me on LinkedIn <ArrowRight data-icon="inline-end" /></Button></div></section>
+      <section className="border-t border-border"><div className="mx-auto flex max-w-screen-2xl flex-col gap-6 px-4 sm:px-6 py-16 sm:flex-row sm:items-center sm:justify-between lg:px-8"><div><p className="font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">{copy.ctaEyebrow}</p><h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight">{copy.ctaTitle}</h2></div><Button nativeButton={false} render={<a href={copy.ctaUrl} target="_blank" rel="noreferrer" />} size="lg">{copy.ctaLabel} <ArrowRight data-icon="inline-end" /></Button></div></section>
       <SiteFooter />
     </main>
   )
 }
+
