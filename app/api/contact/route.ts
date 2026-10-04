@@ -32,7 +32,7 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY
   const to = process.env.CONTACT_TO_EMAIL
-  const from = process.env.CONTACT_FROM_EMAIL || 'Cloudophile <contact@cloudophile.com>'
+  const from = process.env.CONTACT_FROM_EMAIL || 'Cloudophile <onboarding@resend.dev>'
   const fallbackFrom = 'Cloudophile <onboarding@resend.dev>'
   if (!apiKey || !to) return NextResponse.json({ message: 'Message delivery is not configured yet. Please try again later.' }, { status: 503 })
 
