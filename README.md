@@ -55,7 +55,7 @@ If Cosmos is not configured, unreachable, or a document is missing/unpublished, 
 
 ## Deployment (Azure Static Web Apps)
 
-- Live site: https://delightful-cliff-0c0527e00.5.azurestaticapps.net
+- Live site: https://cloudophile.io (SWA default domain: https://delightful-cliff-0c0527e00.5.azurestaticapps.net)
 - Static Web App `cloudophile-swa` (Standard plan, required for hybrid Next.js SSR) in the `cloudophile` resource group.
 - App settings on the SWA: `COSMOS_CONNECTION_STRING`, `COSMOS_DATABASE`, `COSMOS_CONTAINER`.
 - Deployment: `.github/workflows/azure-static-web-apps.yml` runs on every push to `main`, using the GitHub secret `AZURE_STATIC_WEB_APPS_API_TOKEN`.
