@@ -3,7 +3,7 @@ export const fallbackContent = {
   experience: { eyebrow: 'Experience', title: 'Built across platforms. Proven through transformation.', intro: 'A leadership journey spanning cloud platforms, enterprise architecture, distributed systems, and the decisions that shape technology at scale.' },
   expertise: { eyebrow: 'Expertise', title: 'Deep systems thinking. Clear executive decisions.', intro: 'Technology leadership across enterprise AI, cloud platforms, distributed systems, and transformation programs where architecture and strategy must move together.' },
   testimonials: { eyebrow: 'Testimonials', title: 'Leadership measured by the people and systems it moves forward.', intro: 'Perspectives from colleagues and partners on enterprise transformation, architecture, collaboration, and technology leadership.' },
-  articles: { eyebrow: 'Articles & field notes', title: 'Ideas for leaders building through the next technology shift.', intro: 'Perspectives on enterprise AI, cloud architecture, distributed systems, and technology leadership.' },
+  articles: { eyebrow: 'Insights & field notes', title: 'Ideas for leaders building through the next technology shift.', intro: 'Perspectives on enterprise AI, cloud architecture, distributed systems, and technology leadership.' },
   advisory: { eyebrow: 'Executive advisory', title: 'Make the next technology decision with conviction.', intro: 'Independent, experience-backed guidance for leadership teams navigating enterprise AI, cloud modernization, platform strategy, transformation, and career inflection points.' },
   contact: { eyebrow: 'Contact', title: 'Let’s make the next decision clearer.', intro: 'Share what you are navigating—an AI strategy, cloud transformation, architecture decision, or leadership challenge. A little context is enough to begin.' },
 } as const
@@ -158,10 +158,9 @@ export const fallbackCopy: Record<string, Record<string, string>> = {
     linkedinUrl: 'https://www.linkedin.com/in/nagkraju/details/recommendations/?detailScreenTabIndex=0',
   },
   articles: {
-    metaTitle: 'Articles',
+    metaTitle: 'Insights',
     metaDescription: 'Writing and perspectives on enterprise AI, cloud architecture, distributed systems, and technology leadership.',
     cardLink: 'Discuss this topic',
-    note: 'Full essays are being prepared for publication. In the meantime, connect to discuss any of these themes with Nag.',
   },
   advisory: {
     metaTitle: 'Executive Advisory',
@@ -188,7 +187,7 @@ export const fallbackNav = [
   { label: 'Experience', href: '/experience' },
   { label: 'Expertise', href: '/expertise' },
   { label: 'Testimonials', href: '/testimonials' },
-  { label: 'Articles', href: '/articles' },
+  { label: 'Insights', href: '/articles' },
   { label: 'Advisory', href: '/advisory' },
   { label: 'Contact', href: '/contact' },
 ]

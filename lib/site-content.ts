@@ -179,7 +179,9 @@ const cachedNav = unstable_cache(async () => (await readDoc('navigation-main', '
 export async function getNavigation() {
   try {
     const links = await cachedNav()
-    if (Array.isArray(links) && links.length && links.every((l) => l && typeof l.label === 'string' && typeof l.href === 'string')) return links as { label: string; href: string }[]
+    if (Array.isArray(links) && links.length && links.every((l) => l && typeof l.label === 'string' && typeof l.href === 'string')) {
+      return (links as { label: string; href: string }[]).map((link) => link.href === '/articles' ? { ...link, label: 'Insights' } : link)
+    }
   } catch {}
   return fallbackNav
 }

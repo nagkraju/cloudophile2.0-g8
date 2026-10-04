@@ -12,7 +12,8 @@ export function CloudophileCloud({ strokeWidth = 1.5, ...props }: SVGProps<SVGSV
       aria-hidden="true"
       {...props}
     >
-      <path d="M17 17H6.6A3.4 3.4 0 0 1 5.6 10.4A4.8 4.8 0 0 1 14.2 8.2A4.8 4.8 0 0 1 17 17Z" />
+      <path d="M17.6 17H6.2a4.2 4.2 0 0 1-.7-8.3 6.5 6.5 0 0 1 12.6-.9A4.6 4.6 0 0 1 17.6 17Z" />
+      <path d="M12 13v7" />
     </svg>
   )
 }

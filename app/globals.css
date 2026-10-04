@@ -115,6 +115,7 @@
 .motion-orbit-two { width: 5.5rem; height: 5.5rem; animation-duration: 5s; animation-direction: reverse; }
 .motion-pulse { position: absolute; width: 2rem; height: 2rem; border: 1px solid var(--accent); border-radius: 999px; animation: drift 2.8s ease-in-out infinite reverse; }
 .motion-data .motion-orbit { border-radius: 20%; }
+.motion-cloud .motion-pulse { border-radius: 0.4rem; }
 .motion-ai .motion-orbit-one { transform: rotate(45deg); border-radius: 28%; }
 .motion-architecture .motion-orbit-two { border-radius: 0.4rem; }
 
