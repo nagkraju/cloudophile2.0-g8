@@ -52,8 +52,8 @@ export function ContactForm({ copy }: { copy: FormCopy }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="border border-border bg-card p-6 sm:p-8">
-      <FieldGroup>
+    <form onSubmit={handleSubmit} className="border border-border bg-card     p-4 sm:p-6">
+          <FieldGroup className="gap-4">
         <div className="grid gap-5 sm:grid-cols-2">
           <Field><FieldLabel htmlFor="name">{copy.name} <span aria-hidden="true" className="text-primary">*</span><span className="sr-only">required</span></FieldLabel><Input id="name" name="name" autoComplete="name" required minLength={2} maxLength={80} className="h-11" /></Field>
           <Field><FieldLabel htmlFor="email">{copy.email} <span aria-hidden="true" className="text-primary">*</span><span className="sr-only">required</span></FieldLabel><Input id="email" name="email" type="email" autoComplete="email" required maxLength={160} className="h-11" /></Field>
@@ -67,7 +67,7 @@ export function ContactForm({ copy }: { copy: FormCopy }) {
             <SelectContent><SelectGroup>{copy.topics.map((t) => <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>)}</SelectGroup></SelectContent>
           </Select>
         </Field>
-        <Field><FieldLabel htmlFor="message">{copy.messageLabel} <span aria-hidden="true" className="text-primary">*</span><span className="sr-only">required</span></FieldLabel><Textarea id="message" name="message" required minLength={20} maxLength={3000} rows={7} placeholder={copy.messagePlaceholder} /></Field>
+        <Field><FieldLabel htmlFor="message">{copy.messageLabel} <span aria-hidden="true" className="text-primary">*</span><span className="sr-only">required</span></FieldLabel><Textarea id="message" name="message" required minLength={20} maxLength={3000} rows={4} placeholder={copy.messagePlaceholder} /></Field>
         <div className="sr-only" aria-hidden="true"><label htmlFor="website">Website</label><input id="website" name="website" tabIndex={-1} autoComplete="off" /></div>
         <FieldDescription>{copy.disclaimer}</FieldDescription>
         {status.type === 'error' && <FieldError>{status.message}</FieldError>}

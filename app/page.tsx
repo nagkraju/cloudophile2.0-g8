@@ -14,7 +14,7 @@ export const dynamic = 'force-dynamic'
 
 export async function generateMetadata() {
   const copy = await getPageCopy('home')
-  return { title: copy.metaTitle, description: copy.metaDescription }
+  return { title: copy.metaTitle, description: copy.metaDescription, alternates: { canonical: '/' } }
 }
 
 export default async function HomePage() {

@@ -27,8 +27,8 @@ export function SiteFooterClient({ links, tagline, ownerName, explorePrefix }: P
             return <Link key={link.href} href={link.href} aria-current={isActive ? 'page' : undefined} className={cn(navLinkClass, isActive && navLinkActiveClass)}>{link.label}</Link>
           })}
         </div>
-        <Link href={nextPage.href} className="inline-flex items-center justify-self-end text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-          <span className="hidden sm:inline">{explorePrefix} </span>{nextPage.label}<ArrowRight data-icon="inline-end" />
+        <Link href={nextPage.href} className="inline-flex items-center justify-self-end         gap-1 text-sm font-medium text-blue-500 transition-colors hover:text-blue-400">
+                  <span className="hidden sm:inline">{explorePrefix}</span>{nextPage.label}<ArrowRight data-icon="inline-end" />
         </Link>
       </nav>
       <div className="border-t border-border px-4 py-6 text-center sm:px-6 lg:px-8">

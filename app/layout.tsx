@@ -7,7 +7,7 @@ import './globals.css'
 const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
 
-const siteUrl = 'https://cloudophile.com'
+import { siteUrl } from '@/lib/site-url'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -19,7 +19,6 @@ export const metadata: Metadata = {
   keywords: ['Nag Kakarla', 'Cloudophile', 'enterprise AI', 'agentic AI', 'cloud architecture', 'technology executive'],
   authors: [{ name: 'Nag Kakarla', url: siteUrl }],
   creator: 'Nag Kakarla',
-  alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     locale: 'en_GB',
@@ -63,6 +62,14 @@ const structuredData = {
       name: 'Cloudophile',
       url: siteUrl,
       founder: { '@id': `${siteUrl}/#person` },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: siteUrl,
+      name: 'Cloudophile - Nag Kakarla',
+      publisher: { '@id': `${siteUrl}/#person` },
+      inLanguage: 'en',
     },
   ],
 }
