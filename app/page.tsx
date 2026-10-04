@@ -22,20 +22,12 @@ export default async function HomePage() {
   return (
     <main>
       <SiteHeader />
-      <section className="relative isolate min-h-[40rem] overflow-hidden border-b border-border">
+      <section className="relative isolate overflow-hidden border-b border-border">
         <CloudMesh />
-        <div className="relative mx-auto flex min-h-[40rem] max-w-screen-2xl items-center px-4 sm:px-6 py-12 sm:py-14 lg:px-8 lg:py-16">
-          <div className="mx-auto max-w-5xl text-center">
-            <div className="mb-8 flex items-center justify-center gap-3 font-mono text-[0.875rem] uppercase tracking-[0.16em] text-primary">
-              <span className="block h-px w-10 bg-primary" />
-              <span>{content.eyebrow}</span>
-              <span className="block h-px w-10 bg-primary" />
-            </div>
-            <AccentedHeading className="mx-auto max-w-5xl text-balance text-5xl font-semibold leading-[0.98] tracking-[-0.045em] sm:text-7xl lg:text-7xl">{content.title}</AccentedHeading>
-            <div className="mx-auto mt-10 max-w-4xl">
-              <p className="mx-auto max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">{content.intro}</p>
-            </div>
-          </div>
+        <div className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 py-12 sm:py-14 lg:px-8 lg:py-16">
+          <p className="text-center font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">{content.eyebrow}</p>
+          <AccentedHeading className="mx-auto mt-6 max-w-6xl text-balance text-center text-4xl font-semibold leading-[1.02] tracking-[-0.045em] sm:text-5xl lg:text-6xl">{content.title}</AccentedHeading>
+          <p className="mx-auto mt-8 max-w-3xl text-pretty text-center text-lg leading-relaxed text-muted-foreground sm:text-xl">{content.intro}</p>
         </div>
       </section>
 

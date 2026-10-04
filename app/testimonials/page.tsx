@@ -27,7 +27,7 @@ export default async function TestimonialsPage() {
           <CloudMesh />
           <div className="relative mx-auto max-w-screen-2xl px-4 sm:px-6 py-12 sm:py-14 lg:px-8 lg:py-16">
             <p className="text-center font-mono text-[0.875rem] uppercase tracking-[0.18em] text-primary">{content.eyebrow}</p>
-            <AccentedHeading className="mx-auto mt-6 max-w-5xl text-balance text-center text-5xl font-semibold leading-[0.98] tracking-[-0.045em] sm:text-7xl">{content.title}</AccentedHeading>
+            <AccentedHeading className="mx-auto mt-6 max-w-6xl text-balance text-center text-4xl font-semibold leading-[1.02] tracking-[-0.045em] sm:text-5xl lg:text-6xl">{content.title}</AccentedHeading>
             <p className="mx-auto mt-8 max-w-3xl text-pretty text-center text-lg leading-relaxed text-muted-foreground sm:text-xl">{content.intro}</p>
           </div>
         </section>
