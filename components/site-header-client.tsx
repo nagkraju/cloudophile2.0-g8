@@ -17,8 +17,9 @@ export function SiteHeaderClient({ links, ctaLabel, ctaHref }: Props) {
   return (
     <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur-xl">
       <nav className={navGridClass} aria-label="Primary navigation">
-        <Link href="/" className="flex shrink-0 items-center" aria-label="Cloudophile home">
-          <Image src="/brands/cloudophile3.png" alt="Cloudophile" width={991} height={123} priority className="h-auto w-32 object-contain sm:w-44" />
+        <Link href="/" className="relative flex shrink-0 items-center" aria-label="Cloudophile home">
+          <Image src="/brands/cloudophile3.png" alt="Cloudophile" width={991} height={123} priority className="-translate-y-1.5 h-auto w-32 object-contain sm:w-44" />
+          <span className="absolute left-0 top-full -translate-y-1.5 whitespace-nowrap font-mono text-[10px] leading-3 text-muted-foreground">The Alien AI Guy</span>
         </Link>
         <div className={navListClass}>
           {links.map((link) => {
@@ -31,5 +32,4 @@ export function SiteHeaderClient({ links, ctaLabel, ctaHref }: Props) {
     </header>
   )
 }
-
 
